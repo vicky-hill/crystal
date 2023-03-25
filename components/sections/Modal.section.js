@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
+import Button from '../elements/Button';
 import Modal from '../elements/Modal'
 
 const ModalSection = () => {
@@ -7,9 +8,7 @@ const ModalSection = () => {
 
     return (
         <section id="modal">
-            <button className="btn btn-primary" onClick={() => setModal(true)}>
-                Launch demo modal
-            </button>
+            <Button onClick={() => setModal(true)}> Launch demo modal </Button>
 
             <Modal title="Modal" open={modal} close={() => setModal(false)} >
                 <p className='my-4'>
