@@ -1,0 +1,161 @@
+.toast {
+    width: 35rem;
+    max-width: 100%;
+    font-size: 1.4rem;
+    pointer-events: auto;
+    background-color: rgba(255, 255, 255, .85);
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: 0 0.5rem 1rem rgba(220, 220, 220, 0.562);
+    border-radius: 3px;
+
+    small {
+        font-size: 1.2rem;
+        color: #6c757d;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        color: #6c757d;
+        background-clip: padding-box;
+        border-bottom: 1px solid rgba(0, 0, 0, .05);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        &-image {
+            width: 2rem;
+            height: 2rem;
+            background-color: $teal;
+            border-radius: 5px;
+        }
+
+        &-title {
+            font-weight: bolder;
+            color: #6c757d;
+            margin-right: auto;
+            margin-left: 1rem;
+        }
+
+        &-close {
+            z-index: $z-toast;
+            margin-left: 8px;
+            color: inherit;
+            background-color: transparent;
+            border: 0;
+            font-size: 2.4rem;
+            font-weight: 100;
+            line-height: 1;
+            text-shadow: 0 1px 0 #fff;
+            opacity: .5;
+            transform: translateY(1px);
+        }
+    }
+
+    &__body {
+        padding: 1.2rem;
+        word-wrap: break-word;
+    }
+
+    &__container {
+        position: fixed;
+        padding: 1.6rem;
+        position: fixed;
+        z-index: $z-toast;
+        transition: all 0.3s ease-in-out;
+
+        &[data-position^="top-"] {
+            top: 0;
+
+            .toast {
+                animation: toast-top-in 0.6s ease;
+            }
+        }
+
+        &[data-position^="bottom-"] {
+            bottom: 0;
+        }
+
+        &[data-position$="-right"] {
+            right: 0;
+
+            .toast {
+                animation: toast-right-in 0.6s ease;
+            }
+        }
+
+        &[data-position$="-left"] {
+            left: 0;
+
+            .toast {
+                animation: toast-left-in 0.6s ease;
+            }
+        }
+
+        &[data-position$="-center"] {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &> :not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    // Variatons
+    &--danger .toast__header-image {
+        background-color: tomato;
+    }
+}
+
+@keyframes toast-right-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes toast-left-in {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes toast-top-in {
+    from {
+        transform: translateY(-70%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+@media only screen and (max-width: $breakpoint-lg) {
+    .toast__container {
+        padding-bottom: 7.5rem;
+    }
+
+    .toast {
+        background-color: rgba(255, 255, 255, .95);
+    }
+}
+
+@media only screen and (max-width : $breakpoint-sm) {
+    .toast__container {
+        width: 100%;
+    }
+
+    .toast {
+        width: 100%;
+    }
+}
