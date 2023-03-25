@@ -1,0 +1,102 @@
+.pagination {
+    display: flex;
+
+    // Pagination Item
+    &__item {
+        &:first-child .pagination__link {
+            border-bottom-left-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        &:last-child .pagination__link {
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        &:not(:first-child) .pagination__link {
+            margin-left: -1px;
+        }
+
+        &.active .pagination__link {
+            z-index: $z-pagination-active;
+            color: #fff;
+            border-color: $primary;
+            background-color: $primary;
+        }
+    }
+
+    // Pagination Link
+    &__link {
+        position: relative;
+        padding: 6px 12px;
+        display: block;
+        color: $dark;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        &:hover {
+            z-index: $z-pagination-hover;
+            background-color: #e9ecef;
+        }
+
+        &:focus {
+            z-index: $z-pagination-hover;
+            color: $primary;
+            background-color: #e9ecef;
+            box-shadow: 0 0 0 3px rgba($primary, .25);
+        }
+    }
+}
+
+
+/* ===================================
+   CSS Version
+==================================== */
+
+.pagination {
+    display: flex;
+}
+
+.pagination__item:last-child .pagination__link {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.pagination__item:first-child .pagination__link {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.pagination__item:not(:first-child) .pagination__link {
+    margin-left: -1px;
+}
+
+.pagination__item.active .pagination__link {
+    z-index: $z-pagination-active;
+    color: #fff;
+    border-color: $primary;
+    background-color: $primary;
+}
+
+.pagination__link {
+    position: relative;
+    padding: 6px 12px;
+    display: block;
+    color: $dark;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.pagination__link:hover {
+    z-index: $z-pagination-hover;
+    background-color: #e9ecef;
+}
+
+.pagination__link:focus {
+    z-index: $z-pagination-hover;
+    color: $primary;
+    background-color: #e9ecef;
+    box-shadow: 0 0 0 3px rgba($primary, .25);
+}
