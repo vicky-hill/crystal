@@ -70,7 +70,7 @@ const CardSection = () => {
             </div>
 
             {/* Card with glowing corners */}
-            <Card glowing />
+            {/* <Card glowing /> */}
 
         </section>
 

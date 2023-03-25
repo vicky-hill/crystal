@@ -3,6 +3,7 @@ import AlertSection from '../sections/Alert.section'
 import BreadcrumbsSection from '../sections/Breadcrumbs.section'
 import ButtonSection from '../sections/Button.section'
 import CardSection from '../sections/Card.section'
+import ContextSection from '../sections/Context.section'
 import LoaderSection from '../sections/Loader.section'
 import ModalSection from '../sections/Modal.section'
 import PaginationSection from '../sections/Pagination.section'
@@ -22,6 +23,7 @@ const Basic = ({ }) => {
             <ToastSection />
             <AlertSection />
             <CardSection />
+            <ContextSection />
         </div>
     )
 }
