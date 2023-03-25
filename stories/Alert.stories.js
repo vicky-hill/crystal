@@ -1,5 +1,5 @@
 import Alert from '@/components/elements/Alert'
-import "../styles/main.scss"
+import "../sass/main.scss"
 
 export default {
     title: "Basic/Alert",

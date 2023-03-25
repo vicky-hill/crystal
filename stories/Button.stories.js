@@ -1,5 +1,5 @@
 import Button from '../components/elements/Button'
-import "../styles/main.scss"
+import "../sass/main.scss"
 
 export default {
     title: "Basic/Button",

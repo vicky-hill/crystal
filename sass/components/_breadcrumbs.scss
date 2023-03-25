@@ -1,0 +1,33 @@
+.breadcrumbs {
+    padding: 1rem;
+
+    &__item {
+        display: inline-block;
+
+        &:not(:last-of-type)::after {
+            content: '/';
+            margin: 0 10px;
+            color: silver;
+        }
+
+        &.active {
+            .breadcrumbs__link {
+                color: $primary;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__link {
+        color: silver;
+
+        &:hover {
+            color: $dark;
+        }
+    }
+
+    // Separator variations
+    &--caret .breadcrumbs__item:not(:last-of-type)::after {
+        content: '\203a';
+    }
+}

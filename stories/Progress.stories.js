@@ -1,5 +1,5 @@
 import Progress from '@/components/elements/Progress'
-import '../style/main.scss'
+import '../sass/main.scss'
 
 export default {
     title: "Basic/Progress",
