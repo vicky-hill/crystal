@@ -10,7 +10,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <p>normalized</p>
+        <h1>normalized</h1>
       </main>
     </>
   )

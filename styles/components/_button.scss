@@ -1,3 +1,221 @@
-h1 {
-    color: gold;
+.btn {
+    position: relative;
+    font-family: Lato;
+    color: white;
+    font-size: 1.6rem;
+    height: 34px;
+    padding: 0 17px;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid transparent;
+    line-height: inherit;
+    margin-bottom: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+    // Primary
+    &-primary {
+        background-color: $primary;
+
+        &:focus {
+            box-shadow: 0 0 0 .3rem mix(white, $primary, 55%);
+            background-color: mix(black, $primary, 10%);
+        }
+
+        &:hover {
+            background-color: mix(black, $primary, 10%);
+        }
+
+        &:disabled {
+            background-color: mix(white, $primary, 45%);
+            cursor: auto;
+        }
+
+        // Primary Outline
+        &-outline {
+            background-color: transparent;
+            color: $primary;
+            border: 1px solid $primary;
+
+            &:focus {
+                box-shadow: 0 0 0 .3rem mix(white, $primary, 55%);
+                background-color: $primary;
+                color: #fff;
+            }
+
+            &:hover {
+                background-color: $primary;
+                color: #fff;
+            }
+
+            &:disabled {
+                background-color: mix(white, $primary, 45%);
+                cursor: auto;
+                color: #fff;
+            }
+        }
+    }
+
+    // Secondary
+    &-secondary {
+        background-color: $secondary;
+
+        &:focus {
+            box-shadow: 0 0 0 .3rem mix(white, $secondary, 55%);
+            background-color: mix(black, $secondary, 10%);
+        }
+
+        &:hover {
+            background-color: mix(black, $secondary, 10%);
+        }
+
+        &:disabled {
+            background-color: mix(white, $secondary, 45%);
+            cursor: auto;
+        }
+
+        // Secondary Outline
+        &-outline {
+            background-color: transparent;
+            color: $secondary;
+            border: 1px solid $secondary;
+
+            &:focus {
+                box-shadow: 0 0 0 .3rem mix(white, $secondary, 55%);
+                background-color: $secondary;
+                color: #fff;
+            }
+
+            &:hover {
+                background-color: $secondary;
+                color: #fff;
+            }
+
+            &:disabled {
+                background-color: mix(white, $secondary, 45%);
+                cursor: auto;
+                color: #fff;
+            }
+        }
+    }
+
+    &--floating {
+        position: fixed;
+        right: 3rem;
+        bottom: 3rem;
+        width: 6rem;
+        height: 6rem;
+        background: $primary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 2.5rem;
+        box-shadow: 1px 2px 7px rgba(0, 0, 0, .25);
+        transition: background .25s;
+        z-index: $z-floating-btn;
+
+        &:active,
+        &:hover {
+            background: mix(black, $primary, 10%);
+        }
+    }
+
+    &--loading {
+        .btn-text {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border: 3px solid transparent;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: button-loading-spinner .8s ease infinite;
+        }
+
+        @keyframes button-loading-spinner {
+            from {
+                transform: rotate(0turn);
+            }
+
+            to {
+                transform: rotate(1turn);
+            }
+        }
+    }
+
+    &--small {
+        height: 30px;
+        font-size: 14px;
+        padding: 0 15px;
+    }
+
+    &--big {
+        height: 52px;
+        padding: 0 32px;
+    }
+
+    &--block {
+        width: 100%;
+    }
+
+    &--round {
+        border-radius: 2.8rem;
+    }
+}
+
+@media only screen and (max-width : $breakpoint-lg) {
+    .btn-floating {
+        right: 2rem;
+        bottom: 8rem;
+    }
+}
+
+
+// Margin between buttons
+.btn:not(:last-of-type) {
+    margin-right: .8rem;
+}
+
+// .btn:not(:first-of-type) {
+//     margin-left: .4rem;
+// }
+
+
+.btn-input {
+    padding: 4px 17px;
+}
+
+a.btn {
+    padding: 7px 17px
+}
+
+/* ===================================
+   Close button
+==================================== */
+
+.btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: $z-button-close;
+    padding: 1.2rem 2rem;
+    color: inherit;
+    background-color: transparent;
+    border: 0;
+    font-size: 2.4rem;
+    font-weight: 100;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
 }
