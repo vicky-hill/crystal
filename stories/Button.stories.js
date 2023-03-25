@@ -9,7 +9,7 @@ export default {
     }
 }
 
-const Template = ({ buttonLabel, ...args }) => <div><Button {...args}>{ buttonLabel }</Button></div>
+const Template = ({ buttonLabel, ...args }) => <Button {...args}>{ buttonLabel }</Button>
 
 export const Primary = Template.bind({})
 Primary.args = {
