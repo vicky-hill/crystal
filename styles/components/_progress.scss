@@ -1,0 +1,30 @@
+.progress {
+    position: relative;
+    width: 21rem;
+    height: 3rem;
+    background: mix(white, $primary, 55%);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .2s;
+    margin-bottom: 2rem;
+
+    &__fill {
+        width: 0%;
+        height: 100%;
+        background: $primary;
+    }
+
+    &__text {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        font-weight: bold;
+        color: #fff;
+    }
+
+    &--small {
+        height: 1.6rem;
+        background: #e9ecef;
+    }
+}
