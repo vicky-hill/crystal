@@ -1,6 +1,5 @@
 .btn {
     position: relative;
-    font-family: Lato;
     color: white;
     font-size: 1.6rem;
     height: 34px;
@@ -10,45 +9,45 @@
     border: 1px solid transparent;
     line-height: inherit;
     margin-bottom: 1rem;
+    cursor: pointer;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
-    // Primary
-    &-primary {
-        background-color: $primary;
+    &-teal {
+        background-color: $teal;
 
         &:focus {
-            box-shadow: 0 0 0 .3rem mix(white, $primary, 55%);
-            background-color: mix(black, $primary, 10%);
+            box-shadow: 0 0 0 .3rem mix(white, $teal, 55%);
+            background-color: mix(black, $teal, 10%);
         }
 
         &:hover {
-            background-color: mix(black, $primary, 10%);
+            background-color: mix(black, $teal, 10%);
         }
 
         &:disabled {
-            background-color: mix(white, $primary, 45%);
+            background-color: mix(white, $teal, 45%);
             cursor: auto;
         }
 
         // Primary Outline
         &-outline {
             background-color: transparent;
-            color: $primary;
-            border: 1px solid $primary;
+            color: $teal;
+            border: 1px solid $teal;
 
             &:focus {
-                box-shadow: 0 0 0 .3rem mix(white, $primary, 55%);
-                background-color: $primary;
+                box-shadow: 0 0 0 .3rem mix(white, $teal, 55%);
+                background-color: $teal;
                 color: #fff;
             }
 
             &:hover {
-                background-color: $primary;
+                background-color: $teal;
                 color: #fff;
             }
 
             &:disabled {
-                background-color: mix(white, $primary, 45%);
+                background-color: mix(white, $teal, 45%);
                 cursor: auto;
                 color: #fff;
             }
@@ -56,42 +55,42 @@
     }
 
     // Secondary
-    &-secondary {
-        background-color: $secondary;
+    &-grey {
+        background-color: $grey-500;
 
         &:focus {
-            box-shadow: 0 0 0 .3rem mix(white, $secondary, 55%);
-            background-color: mix(black, $secondary, 10%);
+            box-shadow: 0 0 0 .3rem mix(white, $grey-500, 55%);
+            background-color: mix(black, $grey-500, 10%);
         }
 
         &:hover {
-            background-color: mix(black, $secondary, 10%);
+            background-color: mix(black, $grey-500, 10%);
         }
 
         &:disabled {
-            background-color: mix(white, $secondary, 45%);
+            background-color: mix(white, $grey-500, 45%);
             cursor: auto;
         }
 
         // Secondary Outline
         &-outline {
             background-color: transparent;
-            color: $secondary;
-            border: 1px solid $secondary;
+            color: $grey-500;
+            border: 1px solid $grey-500;
 
             &:focus {
-                box-shadow: 0 0 0 .3rem mix(white, $secondary, 55%);
-                background-color: $secondary;
+                box-shadow: 0 0 0 .3rem mix(white, $grey-500, 55%);
+                background-color: $grey-500;
                 color: #fff;
             }
 
             &:hover {
-                background-color: $secondary;
+                background-color: $grey-500;
                 color: #fff;
             }
 
             &:disabled {
-                background-color: mix(white, $secondary, 45%);
+                background-color: mix(white, $grey-500, 45%);
                 cursor: auto;
                 color: #fff;
             }
@@ -104,7 +103,7 @@
         bottom: 3rem;
         width: 6rem;
         height: 6rem;
-        background: $primary;
+        background: $teal;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -113,11 +112,11 @@
         font-size: 2.5rem;
         box-shadow: 1px 2px 7px rgba(0, 0, 0, .25);
         transition: background .25s;
-        z-index: $z-floating-btn;
+        z-index: 200;
 
         &:active,
         &:hover {
-            background: mix(black, $primary, 10%);
+            background: mix(black, $teal, 10%);
         }
     }
 
@@ -181,15 +180,9 @@
     }
 }
 
-
-// Margin between buttons
 .btn:not(:last-of-type) {
     margin-right: .8rem;
 }
-
-// .btn:not(:first-of-type) {
-//     margin-left: .4rem;
-// }
 
 
 .btn-input {

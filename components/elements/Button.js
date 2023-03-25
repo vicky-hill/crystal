@@ -1,20 +1,21 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { getClassName } from '../../../utils/getClassName';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import classNames from 'classnames'
 
-const Button = ({ children, variant, size, outline, rounded, loading, block, className, ...props }) => {
+const Button = ({ children, variant, size, outline, round, loading, block, className, ...props }) => {
 
-    const variations = {
-        variant: variant && `btn-${variant}`,
-        outline: outline && `btn-${variant}-outline`,
-        loading: loading && 'btn--loading',
-        rounded: rounded && 'btn--round',
-        block: block && 'btn--block',
-        size: size && size !== 'regular' && `btn--${size}`
-    }
+    const classes = classNames('btn', {
+        [className]: className,
+        'btn--loading': loading,
+        'btn--round': round,
+        'btn--block': block,
+        [`btn-${variant}`]: variant,
+        [`btn-${variant}-outline`]: outline,
+        [`btn--${size}`]: size && size !== 'regular'
+    });
 
     return (
-        <button className={getClassName('btn', className, variations)} {...props} >
+        <button className={classes} {...props} >
             <span className="btn-text">
                 {children}
             </span>
@@ -23,18 +24,17 @@ const Button = ({ children, variant, size, outline, rounded, loading, block, cla
 }
 
 Button.defaultProps = {
-    variant: 'primary',
+    variant: 'teal',
     size: 'regular'
 }
 
 Button.propTypes = {
-    variant: PropTypes.oneOf(['primary', 'secondary']),
+    variant: PropTypes.oneOf(['teal', 'grey']),
     outline: PropTypes.bool,
-    rounded: PropTypes.bool,
+    round: PropTypes.bool,
     loading: PropTypes.bool,
     block: PropTypes.bool,
-    size: PropTypes.oneOf(['regular', 'small', 'big']),
-    children: PropTypes.element
+    size: PropTypes.oneOf(['regular', 'small', 'big'])
 }
 
 export default Button;

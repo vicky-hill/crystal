@@ -1,1 +1,38 @@
-$gold: gold;
+$teal: #55DEDD;
+$teal-dark: #31b3b3e6;
+$teal-light: rgba($teal, 0.25);
+
+$grey-100: #f8f9fa;
+$grey-200: #e9ecef;
+$grey-300: #dee2e6;
+$grey-400: #ced4da;
+$grey-500: #adb5bd;
+$grey-600: #6c757d;
+$grey-700: #495057;
+$grey-800: #343a40;
+$grey-900: #212529;
+
+$breakpoint-sm: 37.5em;      // 600px
+$breakpoint-md: 56.25em;     // 900px
+$breakpoint-lg: 80em;        // 1200px
+
+$z-button-close: 1100;
+$z-pagination-hover: 1100;
+$z-pagination-active: 1200;
+
+$z-sidenav-overlay: 2000;
+$z-sidenav: 2100;
+$z-navbar: 2200;
+$z-sidebar-submenu: 2300;
+$z-toast: 2400;
+
+$z-megamenu: 2200;
+$z-dropdown-menu: 1800;
+$z-tooltip: 1800;
+$z-floating-btn: 1800;
+$z-bottomnav: 1900;
+
+$z-modal: 3000;
+$z-modal-content: 3100;
+
+$z-context: 4000;
