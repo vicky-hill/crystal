@@ -100,10 +100,9 @@ Card.propTypes = {
     header: PropTypes.string,
     title: PropTypes.string,
     text: PropTypes.string,
-    image: PropTypes.string,
+    image: PropTypes.object,
     horizontal: PropTypes.bool,
-    glowing: PropTypes.bool,
-    children: PropTypes.elementType
+    glowing: PropTypes.bool
 }
 
 export default Card;

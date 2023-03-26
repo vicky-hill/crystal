@@ -65,7 +65,7 @@ const Item = ({ children, active, setActive, key, className, title }) => {
         <div className={getClasses(key)} >
             <div className='accordion__header' onClick={toggle}>
                 <p className='accordion__header-title'>{ title }</p>
-                <i class="accordion__header-toggle fa-sharp fa-solid fa-chevron-down"></i>
+                <i className="accordion__header-toggle fa-sharp fa-solid fa-chevron-down"></i>
             </div>
 
             <div className='accordion__body' ref={content} style={getHeight()} >

@@ -42,8 +42,7 @@ Breadcrumbs.propTypes = {
 
 Item.propTypes = {
     link: PropTypes.string,
-    actve: PropTypes.bool,
-    children: PropTypes.element
+    actve: PropTypes.bool
 }
 
 

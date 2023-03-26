@@ -54,8 +54,7 @@ Modal.propTypes = {
     open: PropTypes.bool,
     close: PropTypes.func,
     shouldCloseOnOutsideClick: PropTypes.bool,
-    title: PropTypes.string,
-    children: PropTypes.element
+    title: PropTypes.string
 }
 
 export default Modal;

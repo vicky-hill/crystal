@@ -9,12 +9,14 @@ import LoaderSection from '../sections/Loader.section'
 import ModalSection from '../sections/Modal.section'
 import PaginationSection from '../sections/Pagination.section'
 import ProgressSection from '../sections/Progress.section'
+import TabsSection from '../sections/Tabs.section'
 import ToastSection from '../sections/Toast.section'
 
 const Basic = ({ }) => {
 
     return (
         <div className="container main">
+            <TabsSection />
             <AccordionSection />
             <ButtonSection />
             <ProgressSection />

@@ -43,7 +43,7 @@ const Context = ({ children }) => {
 }
 
 Context.propTypes = {
-    children: PropTypes.elementType
+
 }
 
 export default Context;
