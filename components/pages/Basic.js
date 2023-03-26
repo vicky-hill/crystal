@@ -5,6 +5,7 @@ import BreadcrumbsSection from '../sections/Breadcrumbs.section'
 import ButtonSection from '../sections/Button.section'
 import CardSection from '../sections/Card.section'
 import ContextSection from '../sections/Context.section'
+import FormSection from '../sections/Form.section'
 import LoaderSection from '../sections/Loader.section'
 import ModalSection from '../sections/Modal.section'
 import PaginationSection from '../sections/Pagination.section'
@@ -16,8 +17,7 @@ const Basic = ({ }) => {
 
     return (
         <div className="container main">
-            <TabsSection />
-            <AccordionSection />
+            <FormSection />
             <ButtonSection />
             <ProgressSection />
             <BreadcrumbsSection />
@@ -28,6 +28,8 @@ const Basic = ({ }) => {
             <AlertSection />
             <CardSection />
             <ContextSection />
+            <TabsSection />
+            <AccordionSection />
         </div>
     )
 }
