@@ -1,4 +1,5 @@
 import React from 'react'
+import AccordionSection from '../sections/Accordion.section'
 import AlertSection from '../sections/Alert.section'
 import BreadcrumbsSection from '../sections/Breadcrumbs.section'
 import ButtonSection from '../sections/Button.section'
@@ -14,6 +15,7 @@ const Basic = ({ }) => {
 
     return (
         <div className="container main">
+            <AccordionSection />
             <ButtonSection />
             <ProgressSection />
             <BreadcrumbsSection />

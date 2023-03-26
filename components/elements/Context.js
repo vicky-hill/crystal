@@ -1,10 +1,16 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef, use } from 'react'
 import PropTypes from 'prop-types'
 
 const Context = ({ children }) => {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [display, setDisplay] = useState('none');
+
+    useEffect(() => {
+       window.addEventListener('click', () => {
+            setDisplay('none');
+        })
+    }, [])
 
     const contextMenu = useRef(null);
 
@@ -20,14 +26,11 @@ const Context = ({ children }) => {
         setY(updateY);
     }
 
-    window.addEventListener('click', () => {
-        setDisplay('none');
-    })
 
     return (
         <>
-             { React.cloneElement( children, { onContextMenu: (e) => showContextMenu(e) } ) }
-            
+            {React.cloneElement(children, { onContextMenu: (e) => showContextMenu(e) })}
+
             <div className="context-menu" style={{ top: y, left: x, display }} ref={contextMenu}>
                 <div className="context-menu__item">Item #1</div>
                 <div className="context-menu__item">Item #2</div>
