@@ -5,7 +5,7 @@ export default {
     title: "Basic/Breadcrumbs",
     component: Breadcrumbs,
     argTypes: {
-        numberOfChildren: { type: "number", defaultValue: 3 }
+        numberOfChildren: { type: "number" }
     }
 }
 
@@ -16,10 +16,13 @@ const Template = ({ numberOfChildren, ...args }) => (
 )
 
 export const Slash = Template.bind({})
-Slash.args = {}
+Slash.args = {
+    numberOfChildren: 3,
+}
 
 export const Caret = Template.bind({})
 Caret.args = {
+    numberOfChildren: 3,
     separator: 'caret'
 }
 

@@ -6,7 +6,7 @@ export default {
     title: "Basic/Accordion",
     component: Accordion,
     argTypes: {
-        numberOfChildren: { type: "number", defaultValue: 3 }
+        numberOfChildren: { type: "number" }
     }
 }
 
@@ -21,7 +21,9 @@ const Template = ({ numberOfChildren, ...args }) => {
 }
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+    numberOfChildren: 3
+}
 
 
 
