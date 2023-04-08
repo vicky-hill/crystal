@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import Button from '../elements/Button'
-import Form, { TextInput, DollarInput, Radio, Checkbox } from '../elements/Form2'
+import Form, { TextInput, DollarInput, Radio, Checkbox, Select, Option } from '../elements/Form'
 import * as Yup from 'yup'
-
 
 const validationSchema = Yup.object({
     title: Yup.string().required('Please type something'),
-    // framework: Yup.string().required('Please select a framework'),
+    framework: Yup.string().required('Please select a framework'),
     editor: Yup.string().required('Please select an editor'),
     extensions: Yup.array().of(Yup.string()).min(1, 'Please select at least one'),
     amount: Yup.string().required('Please enter amount')
@@ -42,6 +41,12 @@ const FormSection = ({ }) => {
                     >
                         <TextInput name="title" />
 
+                        <Select name="framework">
+                            <Option value="react">React</Option>
+                            <Option value="angular">Angular</Option>
+                            <Option value="vue">Vue</Option>
+                        </Select>
+
                         <Radio.Group name="editor">
                             <Radio value="visual">Visual Studio Code</Radio>
                             <Radio value="sublime">Sublime</Radio>
@@ -57,41 +62,12 @@ const FormSection = ({ }) => {
                         <DollarInput name="amount" />
 
                         <Button>Submit</Button>
-
-
                     </Form>
-
 
                     {/* Possible Checks */}
                     {/* Are all required fields from validation represented as inputs in the the form? */}
                     {/* Does the name the input exist in values? */}
                     {/* Are Radios and Checkboxes direct children of their group? */}
-
-
-                    {/* <Form
-                        validation={validationSchema}
-                        values={values}
-                        setValues={setValues}
-                        onSubmit={onSubmit}
-                    >
-            
-
-                        <Select name="framework">
-                            <Option value="react">React</Option>
-                            <Option value="angular">Angular</Option>
-                            <Option value="vue">Vue</Option>
-                        </Select>
-
-
-                        <Checkbox.Group name="extensions">
-                            <Checkbox value="prettier">Prettier</Checkbox>
-                            <Checkbox value="es7">ES7</Checkbox>
-                            <Checkbox value="hopLight">Hop Light</Checkbox>
-                        </Checkbox.Group>
-
-                        <Button>Submit</Button>
-                    </Form> */}
-
 
                 </div>
             </div>
