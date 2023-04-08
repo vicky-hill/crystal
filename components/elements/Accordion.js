@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { PropTypes } from 'prop-types'
 
 const Accordion = ({ children, active, setActive }) => {
-    children = children.map((child, i) => ({
+    children = React.Children.toArray(children).map((child, i) => ({
         ...child,
         props: { ...child.props, active, setActive, key: i }
     }))
@@ -20,7 +20,7 @@ const Item = ({ children, active, setActive, key, className, title }) => {
     const content = useRef();
 
     useEffect(() => {
-      open();
+        open();
     }, [active])
 
     const getClasses = index => classNames('accordion__item', {
@@ -32,7 +32,7 @@ const Item = ({ children, active, setActive, key, className, title }) => {
         if (Array.isArray(active)) {
             // Handle multiple active tabs
             active.includes(key) ? setHeight(content.current.scrollHeight + "px") : setHeight(0);
-        
+
         } else {
             // Handle one active tab
             active === key ? setHeight(content.current.scrollHeight + "px") : setHeight(0);
@@ -43,7 +43,7 @@ const Item = ({ children, active, setActive, key, className, title }) => {
         if (Array.isArray(active)) {
             // Handle multiple active tabs
             active.includes(key) ? setActive(active => active.filter(a => a !== key)) : setActive(active => [...active, key])
-        
+
         } else {
             // Handle one active tab
             key === active ? setActive(null) : setActive(key);
@@ -54,23 +54,23 @@ const Item = ({ children, active, setActive, key, className, title }) => {
         if (Array.isArray(active)) {
             // Handle multiple active tabs
             return { maxHeight: `${!active.includes(key) ? 0 : height}` }
-        
+
         } else {
             // Handle one active tab
             return { maxHeight: `${active !== key ? 0 : height}` }
         }
     }
- 
+
     return (
         <div className={getClasses(key)} >
             <div className='accordion__header' onClick={toggle}>
-                <p className='accordion__header-title'>{ title }</p>
+                <p className='accordion__header-title'>{title}</p>
                 <i className="accordion__header-toggle fa-sharp fa-solid fa-chevron-down"></i>
             </div>
 
             <div className='accordion__body' ref={content} style={getHeight()} >
                 <div className="accordion__content">
-                    { children }
+                    {children}
                 </div>
             </div>
         </div>

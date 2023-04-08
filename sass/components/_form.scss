@@ -102,6 +102,60 @@
             }
         }
 
+        /* ===================================
+           Checkboxes
+        ==================================== */
+        &-checkbox {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 30px;
+
+            &-input {
+                display: none;
+
+                &:checked+.form__group-checkbox-box {
+                    background: mix(black, $primary, 10%);
+                    border-color: mix(black, $primary, 10%);
+                }
+
+                &:checked+.form__group-checkbox-box::after {
+                    transform: scale(1);
+                }
+
+                &:disabled~.form__group-checkbox-label {
+                    color: #95A5A6;
+                }
+                
+                &:disabled+.form__group-checkbox-box {
+                    background: #ECF0F1;
+                }
+            }
+
+            &-box {
+                width: 1.25em;
+                height: 1.25em;
+                border: 1px solid #B9C1C6;
+                border-radius: 3px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
+                flex-shrink: 0;
+                transition: background 0.15s, border-color 0.15s;
+            
+                &::after {
+                    content: '\2714';
+                    font-size: 0.8em;
+                    color: #fff;
+                    transform: scale(0);
+                    transition: transform 0.15s;
+                }
+            }
+
+        }
+
 
         /* ===================================
            Validation
@@ -183,54 +237,54 @@ label.default-label {
    Checkbox
 ==================================== */
 
-.checkbox {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    margin-right: 30px;
-}
+// .checkbox {
+//     display: inline-flex;
+//     align-items: center;
+//     cursor: pointer;
+//     margin-right: 30px;
+// }
 
-.checkbox-input {
-    display: none;
-}
+// .checkbox-input {
+//     display: none;
+// }
 
-.checkbox-box {
-    width: 1.25em;
-    height: 1.25em;
-    border: 1px solid #B9C1C6;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-    flex-shrink: 0;
-    transition: background 0.15s, border-color 0.15s;
-}
+// .checkbox-box {
+//     width: 1.25em;
+//     height: 1.25em;
+//     border: 1px solid #B9C1C6;
+//     border-radius: 3px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-right: 10px;
+//     flex-shrink: 0;
+//     transition: background 0.15s, border-color 0.15s;
+// }
 
-.checkbox-box::after {
-    content: '\2714';
-    font-size: 0.8em;
-    color: #fff;
-    transform: scale(0);
-    transition: transform 0.15s;
-}
+// .checkbox-box::after {
+//     content: '\2714';
+//     font-size: 0.8em;
+//     color: #fff;
+//     transform: scale(0);
+//     transition: transform 0.15s;
+// }
 
-.checkbox-input:checked+.checkbox-box {
-    background: mix(black, $primary, 10%);
-    border-color: mix(black, $primary, 10%);
-}
+// .checkbox-input:checked+.checkbox-box {
+//     background: mix(black, $primary, 10%);
+//     border-color: mix(black, $primary, 10%);
+// }
 
-.checkbox-input:checked+.checkbox-box::after {
-    transform: scale(1);
-}
+// .checkbox-input:checked+.checkbox-box::after {
+//     transform: scale(1);
+// }
 
-.checkbox-input:disabled~.checkbox-label {
-    color: #95A5A6;
-}
+// .checkbox-input:disabled~.checkbox-label {
+//     color: #95A5A6;
+// }
 
-.checkbox-input:disabled+.checkbox-box {
-    background: #ECF0F1;
-}
+// .checkbox-input:disabled+.checkbox-box {
+//     background: #ECF0F1;
+// }
 
 /* ===================================
    Toggle

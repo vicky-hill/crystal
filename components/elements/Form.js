@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext, createContext } from 'react'
 import classNames from 'classnames'
-import TextInputComponent from './TextInput'
+import InputComponent from './Input'
 import RadioComponent from './Radio'
+import CheckboxComponent from './Checkbox'
 
 // Required props for <Form></Form>
 // ---------------------------------
@@ -14,6 +15,20 @@ import RadioComponent from './Radio'
 // className: classes to add to form
 // onChange: custom onChange function
 const Form = ({ children, ...props }) => {
+
+    if (children) {
+        if (Array.isArray(children)) {
+            children = children.map((child) => ({
+                ...child,
+                props: { ...child.props, childrenValues: props.values }
+            }))
+        } else {
+            children = {
+                ...children,
+                props: { ...children.props,  }
+            }
+        }
+    }
 
     return (
         <FormProvider>
@@ -36,7 +51,31 @@ const InnerForm = ({ validation, children, className, values, setValues, onSubmi
     // Ability to use a default onChange function within the form component
     // Or use a custom onChange function outside the form compnonent
     // Custom function must handle setting values
-    const handleChangeFromInside = (e) => { setValues({ ...values, [e.target.name]: e.target.value }); console.log('inside') }
+    const handleChangeFromInside = (e) => { 
+        console.log('inside') 
+
+        // If checkbox handle array field on change
+        if (e.target.type === 'checkbox') {
+            const checkboxValue  = e.target.value;
+            const checkboxName = e.target.name;
+            const updatedValues = { ...values }
+
+            if (!Array.isArray(values[checkboxName])) throw new Error(`The values field for the checkbox: ${checkboxName} is not array, please check values and the onChange handler`)
+
+            if (values[checkboxName].includes(checkboxValue)) {
+                updatedValues[checkboxName] = updatedValues[checkboxName].filter(value => value !== checkboxValue);
+                setValues(updatedValues);
+            } else {
+                updatedValues[checkboxName] = [...updatedValues[checkboxName], checkboxValue];
+                setValues(updatedValues);
+            }
+        
+        // Handle regular value fields on change
+        } else {
+            setValues({ ...values, [e.target.name]: e.target.value });
+        }
+    }
+    
     const handleChangeFromOutside = (e) => onChange(e);
 
     let handleChange;
@@ -71,7 +110,7 @@ const InnerForm = ({ validation, children, className, values, setValues, onSubmi
 
 const getInputProps = (context, props) => {
     const { errors, setErrors, values, handleChange } = context.inputProps;
-    const { name, label, placeholder, onChange } = props
+    const { name, label, placeholder, onChange, type } = props
 
     const getFormGroupClassNames = () => classNames('form__group', {
         'invalid': errors && errors[name]
@@ -86,7 +125,7 @@ const getInputProps = (context, props) => {
         const words = name.match(/[A-Za-z][a-z]*/g) || [];
         const placeholder = words.map(word => word.charAt(0).toLowerCase() + word.substring(1)).join(" ");
 
-        return 'Please enter ' + placeholder;
+        return 'Enter ' + placeholder;
     }
 
     // If onChange was passed into the component use that
@@ -138,14 +177,14 @@ const passPropsToChildren = (children, props) => {
 =================================== */
 export const TextInput = (props) => {
 
-    const { name, ...rest } = props;
+    const { name, childrenValues, ...rest } = props;
     const context = useContext(FormContext);
     const { label, placeholder, value, error, onChange } = getInputProps(context, props);
 
     return (
-        <TextInputComponent
+        <InputComponent
             name={name}
-            value={value}
+            value={childrenValues[name]}
             onChange={onChange}
             label={label}
             placeholder={placeholder}
@@ -190,14 +229,51 @@ export const Option = ({ children, value }) => {
 /* ===================================
    Radio Buttons
 =================================== */
-const Group = (props) => {
-    let { children, placeholder, name, horizontal, disabled, ...rest } = props;
+const RadioGroup = (props) => {
+    let { children, placeholder, name, stacked, disabled, ...rest } = props;
     const context = useContext(FormContext);
-    const { formGroupClassNames, label, error, onChange } = getInputProps(context, props);
+    const { label, error, onChange } = getInputProps(context, props);
 
     const propsForChildren = {
         name,
-        horizontal,
+        stacked,
+        onChange,
+        values: context.inputProps.values
+    }
+
+    if (disabled) propsForChildren.disabled = disabled;
+
+    children = passPropsToChildren(children, propsForChildren);
+
+
+
+    return (
+        <RadioComponent.Group name={name} label={label} onChange={onChange} error={error} values={context.inputProps.values} stacked={stacked} {...rest}>
+            {children}
+        </RadioComponent.Group>
+    )
+}
+
+export const Radio = ({ children, values, onChange, name, value, stacked, disabled }) => {
+    return (
+        <RadioComponent onChange={onChange} name={name} value={value} values={values} stacked={stacked} disabled={disabled}>
+            {children}
+        </RadioComponent>
+    )
+}
+
+Radio.Group = RadioGroup;
+
+/* ===================================
+   Checkboxes
+=================================== */
+const CheckGroup = (props) => {
+    let { children, placeholder, name, disabled, stacked, ...rest } = props;
+    const context = useContext(FormContext);
+    const { label, error, onChange } = getInputProps(context, props);
+
+    const propsForChildren = {
+        name,
         onChange,
         values: context.inputProps.values
     }
@@ -207,22 +283,21 @@ const Group = (props) => {
     children = passPropsToChildren(children, propsForChildren);
 
     return (
-        <RadioComponent.Group name={name} label={label} onChange={onChange} error={error} values={context.inputProps.values} horizontal {...rest}>
+        <CheckboxComponent.Group name={name} label={label} onChange={onChange} error={error} values={context.inputProps.values} stacked={stacked} {...rest}>
             {children}
-        </RadioComponent.Group>
+        </CheckboxComponent.Group>
     )
 }
 
-export const Radio = ({ children, values, onChange, name, value, horizontal, disabled }) => {
+export const Checkbox = ({ children, values, onChange, name, value, stacked, disabled }) => {
     return (
-        <RadioComponent onChange={onChange} name={name} value={value} values={values} horizontal={horizontal} disabled={disabled}>
+        <CheckboxComponent onChange={onChange} name={name} value={value} values={values} stacked={stacked} disabled={disabled}>
             {children}
-        </RadioComponent>
+        </CheckboxComponent>
     )
 }
 
-Radio.Group = Group;
-
+Checkbox.Group = CheckGroup;
 
 
 /* ===================================
@@ -297,6 +372,7 @@ const SimpleSelect = (
    Form Context
 =================================== */
 const FormContext = createContext();
+
 const FormProvider = ({ children }) => {
     const [inputProps, setInputProps] = useState({});
     const loadInputProps = (props) => setInputProps(props);

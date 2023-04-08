@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 
 
-const Radio = ({ children, onChange, name, value, values, horizontal, disabled }) => {
+const Radio = ({ children, onChange, name, value, values, stacked, disabled }) => {
 
     // For handling radios in forms
     let radioWithValues = values && (
@@ -22,19 +22,20 @@ const Radio = ({ children, onChange, name, value, values, horizontal, disabled }
         </label>
     )
 
-    // Wrap all radios in a div for vertical layout
-    if (!horizontal && !values) radioWithoutValues = (<div>{radioWithoutValues}</div>)
-    if (!horizontal && values) radioWithValues = (<div>{radioWithValues}</div>)
+    // Wrap all radios in a div for stacked layout
+    if (stacked && !values) radioWithoutValues = (<div>{radioWithoutValues}</div>)
+    if (stacked && values) radioWithValues = (<div>{radioWithValues}</div>)
 
     return (
         values ? radioWithValues : radioWithoutValues
     )
 }
 
-const Group = ({ children, name, label, onChange, error, values, setValues, horizontal, disabled }) => {    
-    const propsForChildren = { name, onChange, values, horizontal };
+const Group = ({ children, name, label, onChange, error, values, setValues, stacked, disabled }) => {    
+    const propsForChildren = { name, onChange, values, stacked };
     if (disabled) propsForChildren.disabled = true;
     if (!onChange && setValues) propsForChildren.onChange = (e) => setValues({ ...values, [e.target.name]: e.target.value })
+    
     children = passPropsToChildren(children, propsForChildren);
 
     return (
@@ -51,21 +52,10 @@ const Group = ({ children, name, label, onChange, error, values, setValues, hori
 }
 
 const passPropsToChildren = (children, props) => {
-    if (children) {
-        if (Array.isArray(children)) {
-            children = children.map((child) => ({
-                ...child,
-                props: { ...child.props, ...props }
-            }))
-        } else {
-            children = {
-                ...children,
-                props: { ...children.props, ...props }
-            }
-        }
-    }
-
-    return children;
+    return React.Children.toArray(children).map((child) => ({
+        ...child,
+        props: { ...child.props, ...props }
+    }))
 }
 
 Radio.Group = Group
@@ -75,16 +65,20 @@ Radio.propTypes = {
     onChange: PropTypes.func.isRequired,
     name: PropTypes.string,
     value: PropTypes.any.isRequired,
-    values: PropTypes.Object, 
-    horizontal: PropTypes.bool,
-    disabled: PropTypes.bool
+    values: PropTypes.object, 
+    stacked: PropTypes.bool,
+    disabled: PropTypes.bool,
 }
 
 Group.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
-
-}
+    error: PropTypes.string,
+    values: PropTypes.object,
+    setValues: PropTypes.func,
+    stacked: PropTypes.bool,
+    disabled: PropTypes.bool
+}   
 
 export default Radio;
 
