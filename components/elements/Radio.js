@@ -7,7 +7,7 @@ const Radio = ({ children, onChange, name, value, values, stacked, disabled }) =
     // For handling radios in forms
     let radioWithValues = values && (
         <label htmlFor={value} className="form__group-radio">
-            <input className="form__group-radio-input" disabled={disabled} checked={values[name] === value} value={value} onChange={onChange} type="radio" name={name} id={value} />
+            <input className="form__group-radio-input" disabled={disabled} checked={values[name] === value} value={value ? value : children} onChange={onChange} type="radio" name={name} id={value} />
             <div className="form__group-radio-circle"></div>
             <div className="form__group-radio-label"> {children} </div>
         </label>
@@ -16,7 +16,7 @@ const Radio = ({ children, onChange, name, value, values, stacked, disabled }) =
     // For handling radios outside forms
     let radioWithoutValues = (
         <label htmlFor={value} className="form__group-radio">
-            <input className="form__group-radio-input" disabled={disabled} value={value} onChange={onChange} type="radio" name={name} id={value} />
+            <input className="form__group-radio-input" disabled={disabled} value={value ? value : children} onChange={onChange} type="radio" name={name} id={value} />
             <div className="form__group-radio-circle"></div>
             <div className="form__group-radio-label">{children} </div>
         </label>

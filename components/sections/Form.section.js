@@ -42,21 +42,21 @@ const FormSection = ({ }) => {
                         <TextInput name="title" />
 
                         <Select name="framework">
-                            <Option value="react">React</Option>
-                            <Option value="angular">Angular</Option>
-                            <Option value="vue">Vue</Option>
+                            <Option>React</Option>
+                            <Option>Angular</Option>
+                            <Option>Vue</Option>
                         </Select>
 
                         <Radio.Group name="editor">
-                            <Radio value="visual">Visual Studio Code</Radio>
-                            <Radio value="sublime">Sublime</Radio>
-                            <Radio value="atom">Atom</Radio>
+                            <Radio>Visual Studio Code</Radio>
+                            <Radio>Sublime</Radio>
+                            <Radio>Atom</Radio>
                         </Radio.Group>
 
                         <Checkbox.Group name="extensions">
-                            <Checkbox value="prettier">Prettier</Checkbox>
-                            <Checkbox value="es7">ES7</Checkbox>
-                            <Checkbox value="hopLight">Hop Light</Checkbox>
+                            <Checkbox>Prettier</Checkbox>
+                            <Checkbox>ES7</Checkbox>
+                            <Checkbox>Hop Light</Checkbox>
                         </Checkbox.Group>
 
                         <DollarInput name="amount" />

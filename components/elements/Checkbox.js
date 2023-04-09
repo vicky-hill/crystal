@@ -8,7 +8,7 @@ const Checkbox = ({ children, onChange, name, value, values, stacked, disabled }
     // Handling checkboxes in forms with values, setValues
     let boxWithValues = values && (
         <label htmlFor={value} className="form__group-checkbox">
-            <input className="form__group-checkbox-input" onChange={onChange} checked={values[name].includes(value)} value={value} type="checkbox" disabled={disabled} name={name} id={value} />
+            <input className="form__group-checkbox-input" onChange={onChange} checked={values[name].includes(value)} value={value ? value : children} type="checkbox" disabled={disabled} name={name} id={value} />
             <div className="form__group-checkbox-box"></div>
             <div className="form__group-checkbox-label">{children}</div>
         </label>
