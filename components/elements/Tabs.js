@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 const Tabs = ({ children, active, setActive }) => {
-    children = children.map((child, i) => ({
+    children = React.Children.toArray(children).map((child, i) => ({
         ...child,
         props: { ...child.props, active, key: i }
     }))
