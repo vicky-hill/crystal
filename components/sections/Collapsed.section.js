@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from '../elements/Button';
-import Collapsed from '../elements/Collapse';
+import Collapsed from '../elements/Collapsed';
 import Card from '../elements/Card';
 
 const CollapsedSection = ({ }) => {
