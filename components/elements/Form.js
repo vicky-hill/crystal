@@ -188,14 +188,14 @@ export const Select = ({ children, name, label, placeholder, onChange, error, di
 
     return (
         <SelectComponent onChange={getOnChange} error={error} label={label} name={name} value={values[name]} disabled={disabled} placeholder={placeholder} {...rest} >
-            { ...children }
+            { children }
         </SelectComponent>
     )
 }
 
 export const Option = ({ children, value }) => {
     return (
-        <OptionComponent value={value}>{children}</OptionComponent>
+        <OptionComponent value={value ? value : children}>{children}</OptionComponent>
     )
 }
 
@@ -232,7 +232,7 @@ const RadioGroup = ({ children, name, label, placeholder, stacked, disabled, err
 
 export const Radio = ({ children, values, onChange, name, value, stacked, disabled }) => {
     return (
-        <RadioComponent onChange={onChange} name={name} value={value} values={values} stacked={stacked} disabled={disabled}>
+        <RadioComponent onChange={onChange} name={name} value={value ? value : children} values={values} stacked={stacked} disabled={disabled}>
             {children}
         </RadioComponent>
     )
@@ -273,7 +273,7 @@ const CheckGroup = ({ children, name, label, placeholder, stacked, disabled, err
 
 export const Checkbox = ({ children, values, onChange, name, value, stacked, disabled }) => {
     return (
-        <CheckboxComponent onChange={onChange} name={name} value={value} values={values} stacked={stacked} disabled={disabled}>
+        <CheckboxComponent onChange={onChange} name={name} value={value ? value : children} values={values} stacked={stacked} disabled={disabled}>
             {children}
         </CheckboxComponent>
     )

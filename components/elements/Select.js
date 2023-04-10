@@ -18,7 +18,7 @@ const Select = ({ children, onChange, error, label, name, value, disabled, place
 
 export const Option = ({ children, value }) => {
     return (
-        <option value={value}>{children}</option>
+        <option value={value ? value : children}>{children}</option>
     )
 }
 

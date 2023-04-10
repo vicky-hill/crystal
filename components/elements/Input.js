@@ -63,7 +63,6 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
         />
     )
 
-
     return (
         <div className={`form__group ${error ? 'invalid' : ''}`}>
             <label className='form__group-label' htmlFor={name}>{label}</label>
