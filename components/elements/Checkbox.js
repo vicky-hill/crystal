@@ -32,30 +32,29 @@ const Checkbox = ({ children, onChange, name, value, values, stacked, disabled }
     )
 }
 
-const Group = ({ children, name, label, onChange, error, values, setValues, stacked, disabled }) => {
+const Group = ({ children, name, label, noLabel, onChange, error, values, setValues, stacked, disabled }) => {
     const propsForChildren = { name, onChange, values, stacked };
     if (disabled) propsForChildren.disabled = true;
     if (!onChange && setValues) propsForChildren.onChange = (e) => setValues({ ...values, [e.target.name]: e.target.value })
-    children = passPropsToChildren(children, propsForChildren);
+
+    const renderChildren = () => {
+        return React.Children.map(children, (child) => {
+            return React.cloneElement(child, {
+                ...child.props,
+                ...propsForChildren
+            });
+        });
+    };
 
     return (
         <div className={`form__group ${error ? 'invalid' : ''}`}>
-            <label className='form__group-label' htmlFor={name}>{label}</label>
+            {!noLabel && <label className='form__group-label' htmlFor={name}>{label}</label>}
             <div className='form__group-checkboxes'>
-                {
-                    children
-                }
+                {renderChildren()}
             </div>
             <div className="form__group-feedback">{error}</div>
         </div>
     )
-}
-
-const passPropsToChildren = (children, props) => {
-    return React.Children.toArray(children).map((child) => ({
-        ...child,
-        props: { ...child.props, ...props }
-    }))
 }
 
 const handleWarnings = (children, onChange, name, value, values, stacked, disabled) => {

@@ -38,6 +38,7 @@ const FormSection = ({ }) => {
                         values={values}
                         setValues={setValues}
                         onSubmit={onSubmit}
+                        noLabel
                     >
                         <TextInput name="title" />
 
