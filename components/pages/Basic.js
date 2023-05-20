@@ -13,13 +13,18 @@ import ProgressSection from '../sections/Progress.section'
 import TabsSection from '../sections/Tabs.section'
 import ToastSection from '../sections/Toast.section'
 import CollapsedSection from '../sections/Collapsed.section'
+import TricksSection from '../sections/Tricks.section'
+import InputSection from '../sections/Input.section'
+import CheckboxSection from '../sections/Checkbox.section'
+import RadioSection from '../sections/Radio.section'
+import SelectSection from '../sections/Select.section'
 
 
 const Basic = ({ }) => {
 
     return (
         <div className="container main">
-            <CollapsedSection />
+           
             <FormSection />
             <ButtonSection />
             <ProgressSection />
@@ -28,11 +33,20 @@ const Basic = ({ }) => {
             <LoaderSection />
             <PaginationSection />
             <ToastSection />
+            <CollapsedSection />
             <AlertSection />
             <CardSection />
             <ContextSection />
             <TabsSection />
             <AccordionSection />
+            <TricksSection />
+
+            {/* Form Components */}
+            <InputSection />
+            <CheckboxSection />
+            <RadioSection />
+            <SelectSection />
+
         </div>
     )
 }
