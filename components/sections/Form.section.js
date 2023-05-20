@@ -20,12 +20,13 @@ const FormSection = ({ }) => {
         amount: ''
     })
 
+
     const onSubmit = async () => {
         console.log('submit', values)
     }
 
     const onChange = (e) => {
-        console.log('outside')
+        console.log('outside', values);
         setValues({ ...values, [e.target.name]: e.target.value })
     }
 
@@ -38,7 +39,6 @@ const FormSection = ({ }) => {
                         values={values}
                         setValues={setValues}
                         onSubmit={onSubmit}
-                        noLabel
                     >
                         <TextInput name="title" />
 

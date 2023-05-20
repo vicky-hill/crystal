@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({ number, dollar, name, label, onChange, value, error, placeholder, noLabel, ...rest }) => {
+const Input = ({ number, dollar, name, label, onChange, value, error, placeholder, noLabel, className = '', identifier, ...rest }) => {
 
     const preventMinus = (e) => {
         if (e.code === 'Minus') {
@@ -21,7 +21,7 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
 
     const TextInput = (
         <input
-            className="form__group-input"
+            className={'form__group-input ' + className}
             value={value}
             onChange={onChange}
             placeholder={placeholder}
@@ -34,7 +34,7 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
 
     const NumberInput = (
         <input
-            className="form__group-input"
+            className={'form__group-input ' + className}
             value={value}
             onChange={onChange}
             placeholder={placeholder}
@@ -48,7 +48,7 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
 
     const DollarInput = (
         <input
-            className="form__group-input"
+            className={'form__group-input ' + className}
             value={value}
             onChange={onChange}
             placeholder={placeholder}
@@ -65,7 +65,7 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
 
     return (
         <div className={`form__group ${error ? 'invalid' : ''}`}>
-            { !noLabel && <label className='form__group-label' htmlFor={name}>{label}</label> }
+            {!noLabel && <label className='form__group-label' htmlFor={name}>{label}</label>}
             {
                 number ? NumberInput : dollar ? DollarInput : TextInput
             }

@@ -1,13 +1,17 @@
 import React from 'react'
 
-const Select = ({ children, onChange, error, label, noLabel, name, value, disabled, placeholder, ...rest }) => {
+const Select = ({ children, onChange, error, label, noLabel, name, value, setValue, disabled, placeholder, className='', identifier, ...rest }) => {
+
+    value = value ? value : "";
+    placeholder = placeholder ? placeholder : name ? `Select a ${name.toLowerCase()}` : 'Make a selection';
+    onChange = onChange ? onChange : setValue ? (e) => setValue(e.target.value) : console.warn("Select: no onChange handler was specified")
 
     return (
-        <div className={`form__group ${error ? 'invalid' : ''}`}>
+        <div className={`form__group ${error ? 'invalid' : ''} ` + className}>
             {!noLabel && label && <label className='form__group-label' htmlFor={name}>{label}</label>}
 
             <select className="form__group-input" value={value} onChange={onChange} name={name} id={name} disabled={disabled} {...rest}>
-                <option value="" defaultValue disabled>{placeholder ? placeholder : `Select a ${name.toLowerCase()}`}</option>
+                <option value="" defaultValue disabled>{placeholder}</option>
                 {children}
             </select>
 
@@ -16,9 +20,9 @@ const Select = ({ children, onChange, error, label, noLabel, name, value, disabl
     )
 }
 
-export const Option = ({ children, value }) => {
+export const Option = ({ children, value, disabled }) => {
     return (
-        <option value={value ? value : children}>{children}</option>
+        <option disabled={disabled} value={value ? value : children}>{children}</option>
     )
 }
 

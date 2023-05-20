@@ -7,21 +7,20 @@ import SelectComponent, { Option as OptionComponent } from './Select'
 
 const FormContext = createContext();
 
-const Form = ({ children, values, setValues, validation, onSubmit, onChange, noLabel }) => {
+const Form = ({ children, values, setValues, validation, onSubmit, onChange, noLabel, className='', ...rest }) => {
     const [errors, setErrors] = useState({});
 
     // Ability to use a default onChange function within the form component
     // Or use a custom onChange function outside the form compnonent, must handle setting values
     const handleChangeFromInside = (e) => {
-        console.log('inside')
-
+        let updatedValues = { ...values };
+        
         // If checkbox handle array field on change
         if (e.target.type === 'checkbox') {
             const checkboxValue = e.target.value;
             const checkboxName = e.target.name;
-            const updatedValues = { ...values }
 
-            if (!Array.isArray(values[checkboxName])) throw new Error(`The values field for the checkbox: ${checkboxName} is not array, please check values and the onChange handler`)
+            if (!Array.isArray(values[checkboxName])) return console.warn(`Checkbox in Form: The values field for the checkbox: ${checkboxName} is not array, please check values and the onChange handler`)
 
             if (values[checkboxName].includes(checkboxValue)) {
                 updatedValues[checkboxName] = updatedValues[checkboxName].filter(value => value !== checkboxValue);
@@ -33,8 +32,11 @@ const Form = ({ children, values, setValues, validation, onSubmit, onChange, noL
 
             // Handle regular value fields on change
         } else {
-            setValues({ ...values, [e.target.name]: e.target.value });
+            updatedValues = { ...values, [e.target.name]: e.target.value }
+            setValues(updatedValues);
         }
+
+        console.log('inside', updatedValues);
     }
 
     const handleChangeFromOutside = (e) => onChange(e);
@@ -67,7 +69,7 @@ const Form = ({ children, values, setValues, validation, onSubmit, onChange, noL
 
     return (
         <FormContext.Provider value={{ values, setValues, validation, noLabel, errors, setErrors, handleChange }}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={className} {...rest}>
                 {children}
             </form>
         </FormContext.Provider>
@@ -116,7 +118,7 @@ const resetErrors = (errors, setErrors, name) => {
 /* ===================================
    Text Input
 =================================== */
-export const TextInput = ({ name, label, placeholder, onChange, error, ...rest }) => {
+export const TextInput = ({ name, label, placeholder, onChange, error, className, ...rest }) => {
     const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
 
     label = getLabel(name, label);
@@ -137,6 +139,7 @@ export const TextInput = ({ name, label, placeholder, onChange, error, ...rest }
             noLabel={noLabel}
             placeholder={placeholder}
             error={error}
+            className={className}
             {...rest}
         />
     )
@@ -146,7 +149,7 @@ export const TextInput = ({ name, label, placeholder, onChange, error, ...rest }
 /* ===================================
    Dollar Input
 =================================== */
-export const DollarInput = ({ name, label, placeholder, onChange, error, ...rest }) => {
+export const DollarInput = ({ name, label, placeholder, onChange, error, className, ...rest }) => {
     const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
 
     label = getLabel(name, label);
@@ -167,6 +170,7 @@ export const DollarInput = ({ name, label, placeholder, onChange, error, ...rest
             noLabel={noLabel}
             placeholder={placeholder}
             error={error}
+            className={className}
             dollar
             {...rest}
         />
@@ -177,7 +181,7 @@ export const DollarInput = ({ name, label, placeholder, onChange, error, ...rest
 /* ===================================
    Select
 =================================== */
-export const Select = ({ children, name, label, placeholder, onChange, error, disabled, ...rest }) => {
+export const Select = ({ children, name, label, placeholder, onChange, error, disabled, className, ...rest }) => {
     const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
 
     label = getLabel(name, label);
@@ -189,7 +193,18 @@ export const Select = ({ children, name, label, placeholder, onChange, error, di
     }
 
     return (
-        <SelectComponent onChange={getOnChange} error={error} label={label} noLabel={noLabel} name={name} value={values[name]} disabled={disabled} placeholder={placeholder} {...rest} >
+        <SelectComponent
+            onChange={getOnChange}
+            error={error}
+            label={label}
+            noLabel={noLabel}
+            name={name}
+            value={values[name]}
+            disabled={disabled}
+            placeholder={placeholder}
+            className={className}
+            {...rest}
+        >
             {children}
         </SelectComponent>
     )
@@ -236,9 +251,9 @@ const RadioGroup = ({ children, name, label, placeholder, stacked, disabled, err
     )
 }
 
-export const Radio = ({ children, values, onChange, name, value, stacked, disabled }) => {
+export const Radio = ({ children, values, onChange, name, value, stacked, disabled, ...rest }) => {
     return (
-        <RadioComponent onChange={onChange} name={name} value={value ? value : children} values={values} stacked={stacked} disabled={disabled}>
+        <RadioComponent onChange={onChange} name={name} value={value ? value : children} values={values} stacked={stacked} disabled={disabled} {...rest}>
             {children}
         </RadioComponent>
     )
@@ -281,17 +296,15 @@ const CheckGroup = ({ children, name, label, placeholder, stacked, disabled, err
     )
 }
 
-export const Checkbox = ({ children, values, onChange, name, value, stacked, disabled }) => {
+export const Checkbox = ({ children, values, onChange, name, value, stacked, disabled, ...rest }) => {
     return (
-        <CheckboxComponent onChange={onChange} name={name} value={value ? value : children} values={values} stacked={stacked} disabled={disabled}>
+        <CheckboxComponent onChange={onChange} name={name} value={value ? value : children} values={values} stacked={stacked} disabled={disabled} {...rest}>
             {children}
         </CheckboxComponent>
     )
 }
 
 Checkbox.Group = CheckGroup;
-
-
 
 
 

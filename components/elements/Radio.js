@@ -1,40 +1,51 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
 
 
-const Radio = ({ children, onChange, name, value, values, stacked, disabled }) => {
+const Radio = ({ children, onChange, name, selectedValue, value, setValue, values, stacked, checked, disabled, className='', identifier, ...rest }) => {
 
-    // For handling radios in forms
-    let radioWithValues = values && (
+    value = value ? value : children;
+    checked = checked ? checked : (typeof(values) === 'object' && values !== null) ? values[name] === value : values ? values === value : selectedValue ? selectedValue === value : false;
+    onChange = onChange ? onChange : setValue ? (e) => setValue(e.target.checked) : () => console.warn('No on change handler specified on checkbox');
+
+
+    /* ===================================
+       Radio Component
+    =================================== */
+    let radio = (
         <label htmlFor={value} className="form__group-radio">
-            <input className="form__group-radio-input" disabled={disabled} checked={values[name] === value} value={value ? value : children} onChange={onChange} type="radio" name={name} id={value} />
-            <div className="form__group-radio-circle"></div>
-            <div className="form__group-radio-label"> {children} </div>
-        </label>
-    )
-
-    // For handling radios outside forms
-    let radioWithoutValues = (
-        <label htmlFor={value} className="form__group-radio">
-            <input className="form__group-radio-input" disabled={disabled} value={value ? value : children} onChange={onChange} type="radio" name={name} id={value} />
+            <input className={"form__group-radio-input " + className} disabled={disabled} checked={checked} value={value} onChange={onChange} type="radio" name={name} id={value} {...rest} />
             <div className="form__group-radio-circle"></div>
             <div className="form__group-radio-label">{children} </div>
         </label>
     )
 
     // Wrap all radios in a div for stacked layout
-    if (stacked && !values) radioWithoutValues = (<div>{radioWithoutValues}</div>)
-    if (stacked && values) radioWithValues = (<div>{radioWithValues}</div>)
+    if (stacked) radio = <div>{radio}</div>
 
-    return (
-        values ? radioWithValues : radioWithoutValues
-    )
+    return radio;
 }
 
-const Group = ({ children, name, label, noLabel, onChange, error, values, setValues, stacked, disabled }) => {
-    const propsForChildren = { name, onChange, values, stacked };
+const Group = ({ children, name, label, noLabel, onChange, error, value, setValue, values, setValues, stacked, disabled, className='', identifier, ...rest }) => {
+    const propsForChildren = { name, onChange, values, stacked, selectedValue: value };
     if (disabled) propsForChildren.disabled = true;
-    if (!onChange && setValues) propsForChildren.onChange = (e) => setValues({ ...values, [e.target.name]: e.target.value })
+
+    if ((!onChange && setValues) || (!onChange && setValue)) {
+        if (setValue) {
+
+            // Handle value if setValue is passed instead of setValues
+            propsForChildren.onChange = (e) => setValue(e.target.value);
+        
+        } else if (typeof(values) === 'object' && values !== null) {
+
+            // Handle setting values if values is an object
+            propsForChildren.onChange = (e) => setValues({ ...values, [e.target.name]: e.target.value })
+        
+        } else {
+
+            // Handle setting values for strings and null values
+            propsForChildren.onChange = (e) => setValues(e.target.value)
+        }
+    }
 
     const renderChildren = () => {
         return React.Children.map(children, (child) => {
@@ -46,7 +57,7 @@ const Group = ({ children, name, label, noLabel, onChange, error, values, setVal
     };
 
     return (
-        <div className={`form__group ${error ? 'invalid' : ''}`}>
+        <div className={`form__group ${error ? 'invalid' : ''} ` + className} {...rest}>
             {!noLabel && <label className='form__group-label' htmlFor={name}>{label}</label>}
             <div className='form__group-radios'>
                 {renderChildren()}
@@ -57,26 +68,6 @@ const Group = ({ children, name, label, noLabel, onChange, error, values, setVal
 }
 
 Radio.Group = Group
-
-Radio.propTypes = {
-    children: PropTypes.any,
-    onChange: PropTypes.func.isRequired,
-    name: PropTypes.string,
-    value: PropTypes.any.isRequired,
-    values: PropTypes.object,
-    stacked: PropTypes.bool,
-    disabled: PropTypes.bool,
-}
-
-Group.propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    error: PropTypes.string,
-    values: PropTypes.object,
-    setValues: PropTypes.func,
-    stacked: PropTypes.bool,
-    disabled: PropTypes.bool
-}
 
 export default Radio;
 
