@@ -18,6 +18,7 @@ import InputSection from '../sections/Input.section'
 import CheckboxSection from '../sections/Checkbox.section'
 import RadioSection from '../sections/Radio.section'
 import SelectSection from '../sections/Select.section'
+import ListSection from '../sections/List.section'
 
 
 const Basic = ({ }) => {
@@ -25,6 +26,7 @@ const Basic = ({ }) => {
     return (
         <div className="container mt-36">
            
+            <ListSection />
             <FormSection />
             <ButtonSection />
             <ProgressSection />

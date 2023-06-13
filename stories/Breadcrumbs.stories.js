@@ -4,9 +4,6 @@ import '../sass/main.scss';
 export default {
     title: "Basic/Breadcrumbs",
     component: Breadcrumbs,
-    argTypes: {
-        numberOfChildren: { type: "number" }
-    }
 }
 
 const Template = ({ numberOfChildren, ...args }) => (
