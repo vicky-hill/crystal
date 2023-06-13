@@ -20,23 +20,19 @@ const TricksSection = ({ }) => {
     }
 
     return (
-        <>
+        <section className='w-1/2'>
 
             {/* Easy half and full columns with flex */}
 
             <h3 className='mb-5'>Half and Full columns with Flex</h3>
-            <div className="row">
-                <div className="col-6">
-                    <div style={row}>
-                        <Input style={half}  />
-                        <Input style={half}  />
-                        <Input style={full}  />
-                        <Input style={half}  />
-                        <Input style={half}  />
-                    </div>
-                </div>
+            <div style={row}>
+                <Input style={half} />
+                <Input style={half} />
+                <Input style={full} />
+                <Input style={half} />
+                <Input style={half} />
             </div>
-        </>
+        </section>
     )
 }
 

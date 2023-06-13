@@ -31,9 +31,8 @@ const FormSection = ({ }) => {
     }
 
     return (
-        <section id="form">
-            <div className="row">
-                <div className="col-6">
+        <section id="form" className='w-1/2'>
+
                     <Form
                         validation={validationSchema}
                         values={values}
@@ -70,8 +69,6 @@ const FormSection = ({ }) => {
                     {/* Does the name the input exist in values? */}
                     {/* Are Radios and Checkboxes direct children of their group? */}
 
-                </div>
-            </div>
         </section>
     )
 }

@@ -7,22 +7,17 @@ const CollapsedSection = ({ }) => {
     const [collapsed, setCollapsed] = useState(true);
 
     return (
-        <section id="collapse">
-            <div className="row">
-                <div className="col-4">
-                    <Button onClick={() => setCollapsed(!collapsed)}>Open Collapse</Button>
-                   
-                    <Collapsed collapsed={collapsed}>
+        <section id="collapse" className="w-4/12">
+            <Button onClick={() => setCollapsed(!collapsed)}>Open Collapse</Button>
 
-                    <Card
-                        title="Card Title"
-                        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, alias?"
-                    />
+            <Collapsed collapsed={collapsed}>
 
-                    </Collapsed>
+                <Card
+                    title="Card Title"
+                    text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, alias?"
+                />
 
-                </div>
-            </div>
+            </Collapsed>
         </section>
     )
 }

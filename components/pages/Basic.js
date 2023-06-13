@@ -23,7 +23,7 @@ import SelectSection from '../sections/Select.section'
 const Basic = ({ }) => {
 
     return (
-        <div className="container main">
+        <div className="container mt-36">
            
             <FormSection />
             <ButtonSection />

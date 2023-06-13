@@ -7,7 +7,7 @@ const ToastSection = ({ }) => {
     
     return (
         <section id="toast">
-            <div className="mb-3">
+            <div className="mb-5">
                 <div className="toast">
                     <div className="toast__header">
                         <div className="toast__header-image"></div>
@@ -21,7 +21,7 @@ const ToastSection = ({ }) => {
                 </div>
             </div>
 
-            <div className="mb-10">
+            <div className="mb-20">
                 <Button onClick={() => toast('Toast', 'This is a toast message')}>
                     Show toast
                 </Button>

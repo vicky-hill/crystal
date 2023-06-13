@@ -14,21 +14,17 @@ const InputSection = ({ }) => {
 
 
     return (
-        <section id="input">
-            <div className="row">
-                <div className="col-6">
-                    <Input
-                        label="Simple Input"
-                        placeholder="Start typing"
-                        value={name}
-                        onChange={onChange}
-                        error={error}
-                    />
-                    <Button onClick={() => setError('Error is set')}>
-                        Cause Error
-                    </Button>
-                </div>
-            </div>
+        <section id="input" className='w-1/2'>
+            <Input
+                label="Simple Input"
+                placeholder="Start typing"
+                value={name}
+                onChange={onChange}
+                error={error}
+            />
+            <Button onClick={() => setError('Error is set')}>
+                Cause Error
+            </Button>
         </section>
     )
 }
