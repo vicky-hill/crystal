@@ -4,7 +4,7 @@ import Accordion from '../elements/Accordion'
 import Button from '../elements/Button';
 
 const AccordionSection = ({ }) => {
-    const [active, setActive] = useState([0]);
+    const [active, setActive] = useState([0, 1, 2]);
 
     return (
         <section id="accordion">

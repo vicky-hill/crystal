@@ -7,8 +7,8 @@ import SelectComponent, { Option as OptionComponent } from './Select'
 
 const FormContext = createContext();
 
-const Form = ({ children, values, setValues, validation, onSubmit, onChange, noLabel, className='', ...rest }) => {
-    const [errors, setErrors] = useState({});
+const Form = ({ children, values, setValues, validation, onSubmit, onChange, errors, setErrors, noLabel, className='', ...rest }) => {
+    const [innerErrors, setInnerErrors] = useState({});
 
     // Ability to use a default onChange function within the form component
     // Or use a custom onChange function outside the form compnonent, must handle setting values
@@ -32,7 +32,15 @@ const Form = ({ children, values, setValues, validation, onSubmit, onChange, noL
 
             // Handle regular value fields on change
         } else {
-            updatedValues = { ...values, [e.target.name]: e.target.value }
+            
+            // Handle nested values 
+            if (e.target.name.includes('.')) {        
+                updatedValues = getUpdateNestedValues(updatedValues, e);
+            
+            } else {
+                updatedValues[e.target.name] = e.target.value;
+            }
+             
             setValues(updatedValues);
         }
 
@@ -60,9 +68,12 @@ const Form = ({ children, values, setValues, validation, onSubmit, onChange, noL
         } catch (err) {
             const createdErrors = {};
             err.inner.forEach(error => createdErrors[error.path] = error.message);
-            setErrors(createdErrors);
+            setErrors ? setErrors(createdErrors) : setInnerErrors(createdErrors);
         }
     }
+
+    errors = errors ? errors : innerErrors;
+    setErrors = setErrors ? setErrors : setInnerErrors;
 
     // As a rule, handleChange, handleSubmit, etc are always functions generated within the Form component
     // OnChange, OnSubmit, etc are optional functions passed to the Form component, and will be used instead if they are provided
@@ -114,16 +125,75 @@ const resetErrors = (errors, setErrors, name) => {
     }
 }
 
+const getUpdateNestedValues = (updatedValues, e) => {
+    let name = e.target.name.split('.');
+
+    const n = [];
+
+    name.forEach(name => {
+        if (name.includes("[")) {
+            name = name.split('[');
+            name[1] = name[1].split(']')
+
+            n.push(name[0]);
+            n.push(parseInt(name[1][0]));
+        } else {
+            n.push(name);
+        }
+    });
+
+    if (n.length === 2) updatedValues[n[0]][n[1]] = e.target.value;
+    if (n.length === 3) updatedValues[n[0]][n[1]][n[2]] = e.target.value;
+    if (n.length === 4) updatedValues[n[0]][n[1]][n[2]][n[3]] = e.target.value;
+    if (n.length === 5) updatedValues[n[0]][n[1]][n[2]][n[3]][n[4]] = e.target.value;
+    if (n.length === 6) updatedValues[n[0]][n[1]][n[2]][n[3]][n[4]][n[5]] = e.target.value;
+    if (n.length === 7) updatedValues[n[0]][n[1]][n[2]][n[3]][n[4]][n[5]][n[6]] = e.target.value;
+    if (n.length === 8) updatedValues[n[0]][n[1]][n[2]][n[3]][n[4]][n[5]][n[6]][n[8]] = e.target.value;
+    
+    return updatedValues;
+}
+
+const getNestedValue = (nestedName, values) => {
+    let name = nestedName.split('.');
+
+    const n = [];
+
+    name.forEach(name => {
+        if (name.includes("[")) {
+            name = name.split('[');
+            name[1] = name[1].split(']')
+
+            n.push(name[0]);
+            n.push(parseInt(name[1][0]));
+        } else {
+            n.push(name);
+        }
+    });
+
+    let value;
+
+    if (n.length === 2) value = values[n[0]]?.[n[1]] || "";
+    if (n.length === 3) value = values[n[0]]?.[n[1]]?.[n[2]] || "";
+    if (n.length === 4) value = values[n[0]]?.[n[1]]?.[n[2]]?.[n[3]] || "";
+    if (n.length === 5) value = values[n[0]]?.[n[1]]?.[n[2]]?.[n[3]]?.[n[4]] || "";
+    if (n.length === 6) value = values[n[0]]?.[n[1]]?.[n[2]]?.[n[3]]?.[n[4]]?.[n[5]] || "";
+    if (n.length === 7) value = values[n[0]]?.[n[1]]?.[n[2]]?.[n[3]]?.[n[4]]?.[n[5]]?.[n[6]] || "";
+    if (n.length === 8) value = values[n[0]]?.[n[1]]?.[n[2]]?.[n[3]]?.[n[4]]?.[n[5]]?.[n[6]]?.[n[8]] || "";
+
+    return value;
+}
+
 
 /* ===================================
    Text Input
 =================================== */
-export const TextInput = ({ name, label, placeholder, onChange, error, className, ...rest }) => {
+export const TextInput = ({ name, value, label, placeholder, onChange, error, className, ...rest }) => {
     const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
 
     label = getLabel(name, label);
     placeholder = getPlaceholder(name, placeholder);
     error = getError(name, error, errors);
+    value = value || value === '' ? value : name.includes('.') ? getNestedValue(name, values) : values[name]; 
 
     const getOnChange = (e) => {
         onChange ? onChange(e) : handleChange(e);
@@ -133,7 +203,7 @@ export const TextInput = ({ name, label, placeholder, onChange, error, className
     return (
         <InputComponent
             name={name}
-            value={values[name]}
+            value={value}
             onChange={getOnChange}
             label={label}
             noLabel={noLabel}
@@ -181,11 +251,12 @@ export const DollarInput = ({ name, label, placeholder, onChange, error, classNa
 /* ===================================
    Select
 =================================== */
-export const Select = ({ children, name, label, placeholder, onChange, error, disabled, className, ...rest }) => {
+export const Select = ({ children, name, value, label, placeholder, onChange, error, disabled, className, ...rest }) => {
     const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
 
     label = getLabel(name, label);
     error = getError(name, error, errors);
+    value = value || value === '' ? value : name && name.includes('.') ? getNestedValue(name, values) : values[name]; 
 
     const getOnChange = (e) => {
         onChange ? onChange(e) : handleChange(e);
@@ -199,7 +270,7 @@ export const Select = ({ children, name, label, placeholder, onChange, error, di
             label={label}
             noLabel={noLabel}
             name={name}
-            value={values[name]}
+            value={value}
             disabled={disabled}
             placeholder={placeholder}
             className={className}

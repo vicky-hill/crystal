@@ -1,4 +1,5 @@
 import React from 'react'
+import Input from '../elements/Input'
 
 const TricksSection = ({ }) => {
 
@@ -27,11 +28,11 @@ const TricksSection = ({ }) => {
             <div className="row">
                 <div className="col-6">
                     <div style={row}>
-                        <input style={half} type='text' />
-                        <input style={half} type='text' />
-                        <input style={full} type='text' />
-                        <input style={half} type='text' />
-                        <input style={half} type='text' />
+                        <Input style={half}  />
+                        <Input style={half}  />
+                        <Input style={full}  />
+                        <Input style={half}  />
+                        <Input style={half}  />
                     </div>
                 </div>
             </div>
