@@ -61,3 +61,7 @@ button {
     transform: translateX(-6rem) !important;
     width: calc(100% + 12rem) !important;
 }
+
+.no-scroll {
+    overflow: hidden;
+}

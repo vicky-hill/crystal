@@ -1,0 +1,77 @@
+.sidenav {
+    &__btn {
+        font-size: 3rem;
+        color: $grey-700;
+        margin: 4px;
+        background-color: transparent;
+
+        &:is(:hover, :active, :focus, :enabled) {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        } 
+    }
+
+    &__menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 25rem;
+        z-index: $z-sidenav;
+        background: #fff;
+        transform: translateX(-25rem);
+        transition: transform 0.3s;
+        padding-top: 10rem;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        color: #666666;
+        font-weight: bold;
+        font-size: 1.4rem;
+        padding: 12px 25px;
+        transition: transform 0.2s;
+
+        &.active {
+            color: mix(black, $teal, 10%);
+            background: #eeeeee;
+        }
+
+        &:is(:hover, :active) {
+            background: #eeeeee;
+        }
+
+        &>i {
+            margin-right: 15px;
+        }
+    }
+
+    &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: $z-sidenav-overlay;
+        visibility: hidden;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+        transition: all 0.4s;
+    }
+
+    &.open {
+        .sidenav__menu {
+            transform: translateX(0);
+            box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+        }
+        
+        .sidenav__overlay {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
