@@ -20,38 +20,43 @@ import RadioSection from '../sections/Radio.section'
 import SelectSection from '../sections/Select.section'
 import ListSection from '../sections/List.section'
 import SidenavSection from '../sections/Sidenav.section'
+import Navbar from '../elements/Navbar'
 
 
 const Basic = ({ }) => {
 
     return (
-        <div className="container mt-36">
+        <>
+            <Navbar />
+            <div className="container mt-36">
 
-            <SidenavSection />
-            <ListSection />
-            <FormSection />
-            <ButtonSection />
-            <ProgressSection />
-            <BreadcrumbsSection />
-            <ModalSection />
-            <LoaderSection />
-            <PaginationSection />
-            <ToastSection />
-            <CollapsedSection />
-            <AlertSection />
-            <CardSection />
-            <ContextSection />
-            <TabsSection />
-            <AccordionSection />
-            <TricksSection />
+                <SidenavSection />
+                <ListSection />
+                <FormSection />
+                <ButtonSection />
+                <ProgressSection />
+                <BreadcrumbsSection />
+                <ModalSection />
+                <LoaderSection />
+                <PaginationSection />
+                <ToastSection />
+                <CollapsedSection />
+                <AlertSection />
+                <CardSection />
+                <ContextSection />
+                <TabsSection />
+                <AccordionSection />
+                <TricksSection />
 
-            {/* Form Components */}
-            <InputSection />
-            <CheckboxSection />
-            <RadioSection />
-            <SelectSection />
+                {/* Form Components */}
+                <InputSection />
+                <CheckboxSection />
+                <RadioSection />
+                <SelectSection />
 
-        </div>
+            </div>
+        </>
+
     )
 }
 
