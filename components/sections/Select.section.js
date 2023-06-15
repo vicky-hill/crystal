@@ -15,28 +15,24 @@ const SelectSection = ({ }) => {
 
 
     return (
-        <section id="input">
-            <div className="row">
-                <div className="col-6">
+        <section id="input" className='w-1/2'>
 
-                    {/* Simple Select with useState */}  
-                    <Select value={selection} setValue={setSelection}>
-                        <Option disabled>First</Option>
-                        <Option>Second</Option>
-                        <Option>Third</Option>
-                    </Select>
+            {/* Simple Select with useState */}
+            <Select value={selection} setValue={setSelection}>
+                <Option disabled>First</Option>
+                <Option>Second</Option>
+                <Option>Third</Option>
+            </Select>
 
-                    {/* Simple Select with custom onChange */}  
-                    <Select value={selection} onChange={onChange}>
-                        <Option value="2">Second</Option>
-                        <Option value="3">Third</Option>
-                    </Select>
-                    
-                    <Button onClick={() => setError('Error is set')}>
-                        Cause Error
-                    </Button>
-                </div>
-            </div>
+            {/* Simple Select with custom onChange */}
+            <Select value={selection} onChange={onChange}>
+                <Option value="2">Second</Option>
+                <Option value="3">Third</Option>
+            </Select>
+
+            <Button onClick={() => setError('Error is set')}>
+                Cause Error
+            </Button>
         </section>
     )
 }

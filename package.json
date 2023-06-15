@@ -11,7 +11,6 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@next/font": "13.2.4",
     "@storybook/addon-docs": "^7.0.0-rc.8",
     "classnames": "^2.3.2",
     "next": "13.2.4",
@@ -29,9 +28,12 @@
     "@storybook/nextjs": "^7.0.0-rc.8",
     "@storybook/react": "^7.0.0-rc.8",
     "@storybook/testing-library": "^0.0.14-next.1",
+    "autoprefixer": "^10.4.14",
     "babel-loader": "^8.3.0",
+    "postcss": "^8.4.24",
     "sass": "^1.60.0",
     "sass-loader": "^13.2.1",
-    "storybook": "^7.0.0-rc.8"
+    "storybook": "^7.0.0-rc.8",
+    "tailwindcss": "^3.3.2"
   }
 }

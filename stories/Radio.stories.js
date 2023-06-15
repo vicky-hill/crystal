@@ -4,10 +4,7 @@ import '../sass/main.scss'
 
 export default {
     title: "Basic/Radio",
-    component: Radio,
-    argTypes: {
-        numberOfChildren: { type: "number" }
-    }
+    component: Radio
 }
 
 const TemplateGroup = ({ numberOfChildren, ...args }) => {

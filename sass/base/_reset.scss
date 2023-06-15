@@ -52,3 +52,16 @@ button {
     border: none;
     outline: none;
 }
+
+/* ===================================
+   100% fit in padded container
+==================================== */
+
+.make-fit {
+    transform: translateX(-6rem) !important;
+    width: calc(100% + 12rem) !important;
+}
+
+.no-scroll {
+    overflow: hidden;
+}

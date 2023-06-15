@@ -7,7 +7,7 @@ const Accordion = ({ children, active, setActive }) => {
         ...child,
         props: { ...child.props, active, setActive, key: i }
     }))
-
+    
     return (
         <div className="accordion">
             {children}

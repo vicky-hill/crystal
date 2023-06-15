@@ -2,6 +2,7 @@
 
     &__group {
         margin-bottom: 2.5rem;
+        width: 100%;
 
         /* ===================================
            Inputs and Select
@@ -127,7 +128,7 @@
                 &:disabled~.form__group-checkbox-label {
                     color: #95A5A6;
                 }
-                
+
                 &:disabled+.form__group-checkbox-box {
                     background: #ECF0F1;
                 }
@@ -144,7 +145,7 @@
                 margin-right: 10px;
                 flex-shrink: 0;
                 transition: background 0.15s, border-color 0.15s;
-            
+
                 &::after {
                     content: '\2714';
                     font-size: 0.8em;

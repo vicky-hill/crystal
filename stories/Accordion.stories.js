@@ -4,10 +4,7 @@ import '../sass/main.scss';
 
 export default {
     title: "Basic/Accordion",
-    component: Accordion,
-    argTypes: {
-        numberOfChildren: { type: "number" }
-    }
+    component: Accordion
 }
 
 const Template = ({ numberOfChildren, ...args }) => {

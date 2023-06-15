@@ -1,0 +1,32 @@
+.badge {
+    position: relative;
+    display: inline-block;
+    font-size: 70%;
+    background-color: $teal;
+    color: #fff;
+    padding: .4em .8em;
+    font-weight: 700;
+    line-height: 17px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 4px;
+    margin-left: .6em;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,
+        border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+    &--header {
+        top: -2px;
+    }
+
+    &--light {
+        background-color: #F8F9FA;
+        color: #212629;
+    }
+
+    &--pill {
+        padding-right: .8em;
+        padding-left: .8em;
+        border-radius: 10rem;
+    }
+}
