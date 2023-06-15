@@ -25,7 +25,7 @@ const Radio = ({ children, onChange, name, selectedValue, value, setValue, value
     return radio;
 }
 
-const Group = ({ children, name, label, noLabel, onChange, error, value, setValue, values, setValues, stacked, disabled, className='', identifier, ...rest }) => {
+const Group = ({ children, name, label, noLabel, onChange, error, value, setValue, values, setValues, stacked, disabled, className='', groupClassName, identifier, ...rest }) => {
     const propsForChildren = { name, onChange, values, stacked, selectedValue: value };
     if (disabled) propsForChildren.disabled = true;
 
@@ -57,7 +57,7 @@ const Group = ({ children, name, label, noLabel, onChange, error, value, setValu
     };
 
     return (
-        <div className={`form__group ${error ? 'invalid' : ''} ` + className} {...rest}>
+        <div className={`form__group ${error ? 'invalid' : ''} ${groupClassName}` + className} {...rest}>
             {!noLabel && <label className='form__group-label' htmlFor={name}>{label}</label>}
             <div className='form__group-radios'>
                 {renderChildren()}

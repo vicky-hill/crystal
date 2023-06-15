@@ -7,7 +7,7 @@ import SelectComponent, { Option as OptionComponent } from './Select'
 
 const FormContext = createContext();
 
-const Form = ({ children, values, setValues, validation, onSubmit, onChange, errors, setErrors, noLabel, className='', ...rest }) => {
+const Form = ({ children, values, setValues, validation, onSubmit, onChange, errors, setErrors, noLabel, className='', groupClassName='mb-10', ...rest }) => {
     const [innerErrors, setInnerErrors] = useState({});
 
     // Ability to use a default onChange function within the form component
@@ -79,7 +79,7 @@ const Form = ({ children, values, setValues, validation, onSubmit, onChange, err
     // OnChange, OnSubmit, etc are optional functions passed to the Form component, and will be used instead if they are provided
 
     return (
-        <FormContext.Provider value={{ values, setValues, validation, noLabel, errors, setErrors, handleChange }}>
+        <FormContext.Provider value={{ values, setValues, validation, noLabel, errors, setErrors, handleChange, groupClassName }}>
             <form onSubmit={handleSubmit} className={className} {...rest}>
                 {children}
             </form>
@@ -188,7 +188,7 @@ const getNestedValue = (nestedName, values) => {
    Text Input
 =================================== */
 export const TextInput = ({ name, value, label, placeholder, onChange, error, className, ...rest }) => {
-    const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
+    const { values, handleChange, errors, setErrors, noLabel, groupClassName } = useContext(FormContext);
 
     label = getLabel(name, label);
     placeholder = getPlaceholder(name, placeholder);
@@ -210,6 +210,7 @@ export const TextInput = ({ name, value, label, placeholder, onChange, error, cl
             placeholder={placeholder}
             error={error}
             className={className}
+            groupClassName={groupClassName}
             {...rest}
         />
     )
@@ -220,7 +221,7 @@ export const TextInput = ({ name, value, label, placeholder, onChange, error, cl
    Dollar Input
 =================================== */
 export const DollarInput = ({ name, label, placeholder, onChange, error, className, ...rest }) => {
-    const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
+    const { values, handleChange, errors, setErrors, noLabel, groupClassName } = useContext(FormContext);
 
     label = getLabel(name, label);
     placeholder = getPlaceholder(name, placeholder);
@@ -241,6 +242,7 @@ export const DollarInput = ({ name, label, placeholder, onChange, error, classNa
             placeholder={placeholder}
             error={error}
             className={className}
+            groupClassName={groupClassName}
             dollar
             {...rest}
         />
@@ -252,7 +254,7 @@ export const DollarInput = ({ name, label, placeholder, onChange, error, classNa
    Select
 =================================== */
 export const Select = ({ children, name, value, label, placeholder, onChange, error, disabled, className, ...rest }) => {
-    const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
+    const { values, handleChange, errors, setErrors, noLabel, groupClassName } = useContext(FormContext);
 
     label = getLabel(name, label);
     error = getError(name, error, errors);
@@ -274,6 +276,7 @@ export const Select = ({ children, name, value, label, placeholder, onChange, er
             disabled={disabled}
             placeholder={placeholder}
             className={className}
+            groupClassName={groupClassName}
             {...rest}
         >
             {children}
@@ -292,7 +295,7 @@ export const Option = ({ children, value }) => {
    Radio Buttons
 =================================== */
 const RadioGroup = ({ children, name, label, placeholder, stacked, disabled, error, onChange, ...rest }) => {
-    const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
+    const { values, handleChange, errors, setErrors, noLabel, groupClassName } = useContext(FormContext);
 
     label = getLabel(name, label);
     placeholder = getPlaceholder(name, placeholder);
@@ -316,7 +319,7 @@ const RadioGroup = ({ children, name, label, placeholder, stacked, disabled, err
     };
 
     return (
-        <RadioComponent.Group name={name} label={label} noLabel={noLabel} onChange={getOnChange} error={error} values={values} stacked={stacked} {...rest}>
+        <RadioComponent.Group name={name} label={label} noLabel={noLabel} onChange={getOnChange} error={error} values={values} stacked={stacked} groupClassName={groupClassName} {...rest}>
             {renderChildren()}
         </RadioComponent.Group>
     )
@@ -337,7 +340,7 @@ Radio.Group = RadioGroup;
    Checkboxes
 =================================== */
 const CheckGroup = ({ children, name, label, placeholder, stacked, disabled, error, onChange, ...rest }) => {
-    const { values, handleChange, errors, setErrors, noLabel } = useContext(FormContext);
+    const { values, handleChange, errors, setErrors, noLabel, groupClassName } = useContext(FormContext);
 
     label = getLabel(name, label);
     placeholder = getPlaceholder(name, placeholder);
@@ -361,7 +364,7 @@ const CheckGroup = ({ children, name, label, placeholder, stacked, disabled, err
     };
 
     return (
-        <CheckboxComponent.Group name={name} label={label} noLabel={noLabel} onChange={getOnChange} error={error} values={values} stacked={stacked} {...rest}>
+        <CheckboxComponent.Group name={name} label={label} noLabel={noLabel} onChange={getOnChange} error={error} values={values} stacked={stacked} groupClassName={groupClassName} {...rest}>
             {renderChildren()}
         </CheckboxComponent.Group>
     )

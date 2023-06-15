@@ -42,7 +42,7 @@ const Checkbox = ({ children, name, onChange, value, setValue, values, stacked, 
 }
 
 
-const Group = ({ children, name, label, noLabel, onChange, error, values, setValues, stacked, disabled, className='', identifier, ...rest }) => {
+const Group = ({ children, name, label, noLabel, onChange, error, values, setValues, stacked, disabled, className='', groupClassName="", identifier, ...rest }) => {
     const propsForChildren = { name, onChange, values, stacked };
     if (disabled) propsForChildren.disabled = true;
 
@@ -77,7 +77,7 @@ const Group = ({ children, name, label, noLabel, onChange, error, values, setVal
     };
 
     return (
-        <div className={`form__group ${error ? 'invalid' : ''} ` + className} {...rest}>
+        <div className={`form__group ${error ? 'invalid' : ''} ${groupClassName}` + className} {...rest}>
             {!noLabel && <label className='form__group-label' htmlFor={name}>{label}</label>}
             <div className='form__group-checkboxes'>
                 {renderChildren()}
