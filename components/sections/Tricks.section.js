@@ -20,7 +20,7 @@ const TricksSection = ({ }) => {
     }
 
     return (
-        <section className='w-1/2'>
+        <section className='w-full lg:w-1/2'>
 
             {/* Easy half and full columns with flex */}
 

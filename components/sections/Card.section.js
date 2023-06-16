@@ -8,7 +8,7 @@ const CardSection = () => {
 
     return (
         <section id="cards">
-            <div className="w-1/4">
+            <div className="w-full lg:w-1/4">
 
                 {/* Card with Header */}
                 <Card
@@ -18,7 +18,7 @@ const CardSection = () => {
                 />
             </div>
 
-            <div className="w-1/4">
+            <div className="w-full lg:w-1/4">
 
                 {/* Card without header */}
                 <Card
@@ -27,7 +27,7 @@ const CardSection = () => {
                 />
             </div>
 
-            <div className="w-1/4">
+            <div className="w-full lg:w-1/4">
 
                 {/* Card with image */}
                 <Card
@@ -37,13 +37,13 @@ const CardSection = () => {
                 />
             </div>
 
-            <div className="w-1/4">
+            <div className="w-full lg:w-1/4">
 
                 {/* Well Card */}
                 <Card>Some Text</Card>
             </div>
 
-            <div className="w-1/4">
+            <div className="w-full lg:w-1/4">
 
                 {/* Horizontal card with image */}
                 <Card

@@ -7,7 +7,7 @@ const AccordionSection = ({ }) => {
     const [active, setActive] = useState([0, 1, 2]);
 
     return (
-        <section id="accordion" className="w-1/2">
+        <section id="accordion" className="w-full lg:w-1/2">
             <Accordion active={active} setActive={setActive}>
                 <Accordion.Item title="Accordion 1">
                     This is the first one <br />

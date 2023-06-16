@@ -1,0 +1,33 @@
+.gallery {
+    max-width: 90rem;
+
+    &__main img,
+    &__images img {
+        width: 100%;
+    }
+
+    &__main {
+        margin-bottom: 5px;
+    }
+
+    &__images {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 5px;
+        cursor: pointer;
+    }
+
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn .2s ease-in 1 forwards;
+    }
+    
+    // Fade in animation
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+

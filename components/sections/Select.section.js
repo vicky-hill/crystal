@@ -15,7 +15,7 @@ const SelectSection = ({ }) => {
 
 
     return (
-        <section id="input" className='w-1/2'>
+        <section id="input" className='w-full lg:w-1/2'>
 
             {/* Simple Select with useState */}
             <Select value={selection} setValue={setSelection}>

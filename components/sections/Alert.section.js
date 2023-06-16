@@ -8,7 +8,7 @@ const AlertSection = () => {
     const [alert, setAlert] = useState('This is  a primary alert');
 
     return (
-        <section id="alert" className="w-1/2">
+        <section id="alert" className="w-full lg:w-1/2">
             <Alert message={alert} closeAlert={() => setAlert(null)} />
             <Button onClick={() => setAlert('This is  a primary alert')}>Show alert</Button>
         </section>

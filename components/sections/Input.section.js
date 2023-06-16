@@ -14,7 +14,7 @@ const InputSection = ({ }) => {
 
 
     return (
-        <section id="input" className='w-1/2'>
+        <section id="input" className='w-full lg:w-1/2'>
             <Input
                 label="Simple Input"
                 placeholder="Start typing"
