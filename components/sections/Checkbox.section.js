@@ -14,7 +14,7 @@ const CheckboxSection = ({ }) => {
     }
 
     return (
-        <section id="input" className="w-1/2">
+        <section id="input" className="w-full lg:w-1/2">
 
             {/* Single checkbox with useState */}
             <Checkbox checked={discount} setValue={setDiscount}>Discount</Checkbox>

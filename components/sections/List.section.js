@@ -4,7 +4,7 @@ import List from '../elements/List';
 const ListSection = ({ }) => {
 
     return (
-        <section id="lists" className='w-3/5'>
+        <section id="lists" className='w-full lg:w-3/5'>
             
             {/* Basic List */}
             <List>

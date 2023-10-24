@@ -21,6 +21,10 @@ import SelectSection from '../sections/Select.section'
 import ListSection from '../sections/List.section'
 import SidenavSection from '../sections/Sidenav.section'
 import Navbar from '../elements/Navbar'
+import BottomNav from '../elements/BottomNav'
+import CarouselSection from '../sections/Carousel.section'
+import GallerySection from '../sections/Gallery.section'
+import DragnDrop from '../elements/DragnDrop'
 
 
 const Basic = ({ }) => {
@@ -29,7 +33,10 @@ const Basic = ({ }) => {
         <>
             <Navbar />
             <div className="container mt-36">
-
+                
+                <DragnDrop />
+                <GallerySection />
+                <CarouselSection />
                 <SidenavSection />
                 <ListSection />
                 <FormSection />
@@ -55,6 +62,8 @@ const Basic = ({ }) => {
                 <SelectSection />
 
             </div>
+
+            <BottomNav />
         </>
 
     )

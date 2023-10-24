@@ -31,7 +31,7 @@ const FormSection = ({ }) => {
     }
 
     return (
-        <section id="form" className='w-1/2'>
+        <section id="form" className='w-full lg:w-1/2'>
 
                     <Form
                         validation={validationSchema}

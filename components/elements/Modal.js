@@ -3,11 +3,23 @@ import { PropTypes } from 'prop-types'
 import classNames from 'classnames'
 import Button from './Button'
 
-const Modal = ({ modal, setModal, title, shouldCloseOnOutsideClick, children }) => {
+const Modal = ({ modal, setModal, onClose, onOpen, title, shouldCloseOnOutsideClick, children }) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const open = () => setIsOpen(true);
-    const close = () => setModal ? setModal(false) : setIsOpen(false);
+    const open = () => {
+        setIsOpen(true);
+        onOpen && onOpen();
+    }
+
+    const close = () => {
+        if (setModal) {
+            setModal(false);
+        } else {
+            setIsOpen(false);
+        }
+
+        onClose && onClose();
+    };
 
     const classes = classNames('modal', {
         'open': isOpen || modal

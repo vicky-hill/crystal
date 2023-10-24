@@ -14,7 +14,7 @@ const RadioSection = ({ }) => {
     }
 
     return (
-        <section id="form" className='w-1/2'>
+        <section id="form" className='w-full lg:w-1/2'>
 
             {/* Single Radio button with useState */}
             <Radio checked={darkMode} setValue={setDarkMode}>Dark Mode</Radio>
