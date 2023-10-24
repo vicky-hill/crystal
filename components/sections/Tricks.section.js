@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from '../elements/Input'
+import image1 from '@/public/images/slide-1.jpg'
 
 const TricksSection = ({ }) => {
 
@@ -31,6 +32,11 @@ const TricksSection = ({ }) => {
                 <Input style={full} />
                 <Input style={half} />
                 <Input style={half} />
+            </div>
+
+            {/* Zoom image on hover */}
+            <div className="img__box mt-10">
+                <img src={image1.src} alt="" />
             </div>
         </section>
     )

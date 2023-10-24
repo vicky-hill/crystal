@@ -1,0 +1,96 @@
+.drag-n-drop {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30rem);
+    gap: .7rem;
+    align-items: start;
+
+    &__group {
+        background-color: rgb(247, 247, 247);
+        padding: 1rem;
+        border-radius: 5px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $dark;
+        background-color: #fff;
+        min-height: 5rem;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:active {
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
+        }
+
+        &:not(:last-of-type) {
+            margin-bottom: 7px;
+        }
+    }
+
+    &__title {
+        margin-bottom: .7rem;
+        color: rgb(179, 179, 179);
+    }
+
+    .current {
+        background-color: #f0efef;
+        color: #f0efef;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    *[draggable=true] {
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-drag: element;
+        -webkit-user-drag: element;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        // cursor: grabbing
+    }
+}
+
+// .dnd-group {
+//     background-color: rgb(247, 247, 247);
+//     padding: 1rem;
+//     border-radius: 5px;
+// }
+
+// .dnd-group p {
+//     margin: 0;
+// }
+
+// .dnd-item {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     color: $dark;
+//     background-color: #fff;
+//     min-height: 5rem;
+//     border-radius: 5px;
+//     cursor: pointer;
+// }
+
+// .dnd-item:active {
+//     cursor: grabbing;
+//     cursor: -moz-grabbing;
+//     cursor: -webkit-grabbing;
+// }
+
+// .dnd-item:not(:last-of-type) {
+//     margin-bottom: .7rem;
+// }
+
+// .group-title {
+//     margin-bottom: .7rem;
+//     color: rgb(179, 179, 179);
+// }
+
+
+
