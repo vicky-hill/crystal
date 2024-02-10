@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Radio from '../elements/Radio'
+import Radio from '../elements/form/Radio'
 
 const RadioSection = ({ }) => {
     const [phone, setPhone] = useState(null);

@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from '../elements/Input'
+import Input from '../elements/form/Input'
 import image1 from '@/public/images/slide-1.jpg'
 
 const TricksSection = ({ }) => {

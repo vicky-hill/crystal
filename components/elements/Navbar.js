@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react'
 import Button from './Button';
-import Input from './Input';
+import Input from './form/Input';
 
 const Navbar = ({ }) => {
 

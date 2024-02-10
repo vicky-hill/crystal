@@ -79,7 +79,7 @@ const DragnDrop = ({ data }) => {
     return (
         <div className="drag-n-drop mb-10">
             {
-                list.map((group, groupIndex) => (
+                list && list.map((group, groupIndex) => (
                     <div 
                         key={groupIndex} 
                         className="drag-n-drop__group"

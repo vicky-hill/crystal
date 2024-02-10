@@ -1,4 +1,4 @@
-import Radio from '@/components/elements/Radio'
+import Radio from '@/components/elements/form/Radio'
 import React, { useState } from 'react'
 import '../sass/main.scss'
 

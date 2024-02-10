@@ -9,7 +9,7 @@ const Accordion = ({ children, active, setActive }) => {
     }))
     
     return (
-        <div className="accordion">
+        <div  data-element="accordion" className="accordion">
             {children}
         </div>
     )
@@ -62,14 +62,14 @@ const Item = ({ children, active, setActive, key, className, title }) => {
     }
 
     return (
-        <div className={getClasses(key)} >
-            <div className='accordion__header' onClick={toggle}>
-                <p className='accordion__header-title'>{title}</p>
-                <i className="accordion__header-toggle fa-sharp fa-solid fa-chevron-down"></i>
+        <div data-element="accordion__item" className={getClasses(key)} >
+            <div data-element="accordion__header" className='accordion__header' onClick={toggle}>
+                <p data-element="accordion__title">{title}</p>
+                <i data-element="accordion__toggle" className="accordion__header-toggle fa-sharp fa-solid fa-chevron-down"></i>
             </div>
 
-            <div className='accordion__body' ref={content} style={getHeight()} >
-                <div className="accordion__content">
+            <div data-element="accordion__body" className='accordion__body' ref={content} style={getHeight()} >
+                <div  data-element="accordion__content" className="accordion__content">
                     {children}
                 </div>
             </div>

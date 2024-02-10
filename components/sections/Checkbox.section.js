@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Checkbox from '../elements/Checkbox';
+import Checkbox from '../elements/form/Checkbox';
 import Button from '../elements/Button';
 
 const CheckboxSection = ({ }) => {
