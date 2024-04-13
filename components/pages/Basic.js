@@ -25,6 +25,7 @@ import BottomNav from '../elements/BottomNav'
 import CarouselSection from '../sections/Carousel.section'
 import GallerySection from '../sections/Gallery.section'
 import DragnDrop from '../elements/DragnDrop'
+import Tooltip from '../elements/Tooltip'
 
 
 const Basic = ({ }) => {
@@ -33,7 +34,7 @@ const Basic = ({ }) => {
         <>
             <Navbar />
             <div className="container mt-36">
-                
+                <Tooltip />
                 <DragnDrop />
                 <GallerySection />
                 <CarouselSection />

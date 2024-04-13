@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Select, { Option } from '../elements/Select';
+import Select, { Option } from '../elements/form/Select';
 import Button from '../elements/Button';
 
 

@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React, { useState } from 'react'
 import Button from './Button';
-import Input from './Input';
+import Input from './form/Input';
+import Dropdown from './Dropdown';
 
 const Navbar = ({ }) => {
 
@@ -40,6 +41,11 @@ const Navbar = ({ }) => {
                             </li>
                         ))
                     }
+
+                    <Dropdown title="Flyers" />
+                    <Dropdown title="Sticker" />
+                    <Dropdown title="Sale" />
+                    <Dropdown title="Ecommerce" />
 
                 </ul>
 

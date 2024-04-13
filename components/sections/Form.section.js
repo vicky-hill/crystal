@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from '../elements/Button'
-import Form, { TextInput, DollarInput, Radio, Checkbox, Select, Option } from '../elements/Form'
+import Form, { TextInput, DollarInput, Radio, Checkbox, Select, Option } from '../elements/form/Form'
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object({

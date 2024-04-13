@@ -9,7 +9,7 @@ const AlertSection = () => {
 
     return (
         <section id="alert" className="w-full lg:w-1/2">
-            <Alert message={alert} closeAlert={() => setAlert(null)} />
+            <Alert variant='warning' message={alert} closeAlert={() => setAlert(null)} />
             <Button onClick={() => setAlert('This is  a primary alert')}>Show alert</Button>
         </section>
     )

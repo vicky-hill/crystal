@@ -1,0 +1,60 @@
+[data-tooltip] {
+    position: relative;
+    cursor: default;
+}
+
+[data-tooltip]::before {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    width: max-content;
+    max-width: 200px;
+    left: 50%; 
+    transform: translateX(-50%);
+    margin: 0 auto;
+    content: attr(data-tooltip);
+    bottom: calc(100% + 10px);
+    color: #fff;
+    background-color: #262b2e;
+    text-align: center;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    z-index: 100;
+
+    visibility: hidden;
+    opacity: 0; 
+    transition: opacity .3s ease;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+    opacity: 0.98;
+    visibility: visible;
+}
+
+[data-tooltip]::after {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    content: "";
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: #262b2e;
+    transition: opacity .3s ease;
+}
+
+
+[data-tooltip-bottom]::before {
+    top: calc(100% + 10px);
+    bottom: auto;
+} 
+
+[data-bottom]::after {
+    top: 100%;
+    transform: rotate(180deg) translateX(50%);
+}
