@@ -42,7 +42,10 @@ const Navbar = ({ }) => {
                         ))
                     }
 
-                    <Dropdown />
+                    <Dropdown title="Flyers" />
+                    <Dropdown title="Sticker" />
+                    <Dropdown title="Sale" />
+                    <Dropdown title="Ecommerce" />
 
                 </ul>
 

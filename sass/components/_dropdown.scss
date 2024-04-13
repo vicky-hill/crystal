@@ -1,0 +1,24 @@
+.dropdown {
+    position: relative;
+
+    &__menu {
+        position: absolute;
+        left: 8px;
+        top: calc(100% + .25rem);
+        background-color: white;
+        padding: 10px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+        border-radius: .25rem;
+        opacity: 0;
+        transform: translateY(-5px);
+        transition: all 150ms ease-in-out;
+        pointer-events: none;
+        width: max-content;
+    }
+
+    &:hover &__menu {
+        pointer-events: auto;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
