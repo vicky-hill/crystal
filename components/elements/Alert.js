@@ -12,7 +12,7 @@ import classNames from 'classnames'
  * @param {Variant} props.variant
  * @param {function} props.closeAlert
  */
-export default function Alert ({ message, variant, closeAlert, className, ...props }) {
+export default function Alert({ message, variant, closeAlert, className, ...props }) {
 
     const alertClasses = classNames('py-4 px-5 mb-3 relative rounded-md', {
         [className]: true,
@@ -35,4 +35,3 @@ export default function Alert ({ message, variant, closeAlert, className, ...pro
         ) : null
     )
 }
-

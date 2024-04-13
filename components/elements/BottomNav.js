@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import classNames from 'classnames'
 
-/* eslint-disable */
-const BottomNav = ({ className }) => {
+
+export default function BottomNav ({ className }) {
     const [active, setActive] = useState(0);
 
     const navLinks = [
@@ -36,7 +36,5 @@ const BottomNav = ({ className }) => {
         </nav>
     )
 }
-
-export default BottomNav;
 
 

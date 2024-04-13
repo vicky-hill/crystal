@@ -1,34 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react'
 import classNames from 'classnames'
+import { PropTypes } from 'prop-types'
 
-/**
- * Accordion
- * @param {object} props
- * @param {array | number} props.active
- * @param {function} props.setActive
- */
-export default function Accordion ({ children, active, setActive }) {
+const Accordion = ({ children, active, setActive }) => {
     children = React.Children.toArray(children).map((child, i) => ({
         ...child,
         props: { ...child.props, active, setActive, key: i }
     }))
     
     return (
-        <div className="accordion">
+        <div  data-element="accordion" className="accordion">
             {children}
         </div>
     )
 }
 
-/**
- * Accordion.Item
- * @param {object} props
- * @param {number} props.key
- * @param {string} props.className
- * @param {title} props.title
- * @param {array | number} props.active
- * @param {function} props.setActive
- */
 const Item = ({ children, active, setActive, key, className, title }) => {
     const [height, setHeight] = useState(0);
     const content = useRef();
@@ -76,14 +62,14 @@ const Item = ({ children, active, setActive, key, className, title }) => {
     }
 
     return (
-        <div className={getClasses(key)} >
-            <div className='accordion__header' onClick={toggle}>
-                <p>{title}</p>
-                <i className="accordion__header-toggle fa-sharp fa-solid fa-chevron-down"></i>
+        <div data-element="accordion__item" className={getClasses(key)} >
+            <div data-element="accordion__header" className='accordion__header' onClick={toggle}>
+                <p data-element="accordion__title">{title}</p>
+                <i data-element="accordion__toggle" className="accordion__header-toggle fa-sharp fa-solid fa-chevron-down"></i>
             </div>
 
             <div data-element="accordion__body" className='accordion__body' ref={content} style={getHeight()} >
-                <div className="accordion__content">
+                <div  data-element="accordion__content" className="accordion__content">
                     {children}
                 </div>
             </div>
@@ -92,3 +78,18 @@ const Item = ({ children, active, setActive, key, className, title }) => {
 }
 
 Accordion.Item = Item;
+
+Accordion.propTypes = {
+    active: PropTypes.array || PropTypes.number || null,
+    setActive: PropTypes.func
+}
+
+Item.propTypes = {
+    active: PropTypes.array || PropTypes.number || null,
+    setActive: PropTypes.func,
+    key: PropTypes.number,
+    title: PropTypes.string,
+    className: PropTypes.string
+}
+
+export default Accordion;

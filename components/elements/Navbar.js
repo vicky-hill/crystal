@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import Button from './Button';
 import Input from './form/Input';
+import Dropdown from './Dropdown';
 
 const Navbar = ({ }) => {
 
@@ -40,6 +41,8 @@ const Navbar = ({ }) => {
                             </li>
                         ))
                     }
+
+                    <Dropdown />
 
                 </ul>
 
