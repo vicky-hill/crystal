@@ -6,13 +6,13 @@ export default function Tooltip({ }) {
 
     return (
         <div>
-            <Button data-top data-tooltip="Lorem ipsum">
+            <div className='p-2 w-max mb-4 bg-rose-200 rounded-md' data-top data-tooltip="Lorem ipsum">
                 Tooltip on top
-            </Button>
-            <Button data-bottom data-tooltip="Lorem ipsum">
+            </div>
+           
+            <Button data-tooltip-bottom data-tooltip="Lorem ipsum">
                 Tooltip on bottom
             </Button>
         </div>
-
     )
 }
