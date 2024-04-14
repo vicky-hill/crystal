@@ -34,13 +34,13 @@ const Basic = ({ }) => {
         <>
             <Navbar />
             <div className="container mt-36">
+                <FormSection />
                 <Tooltip />
                 <DragnDrop />
                 <GallerySection />
                 <CarouselSection />
                 <SidenavSection />
                 <ListSection />
-                <FormSection />
                 <ButtonSection />
                 <ProgressSection />
                 <BreadcrumbsSection />

@@ -1,7 +1,9 @@
+$red: #dd3444;
+$green: #57CC9D;
+
 .form {
 
     &__group {
-        // margin-bottom: 2.5rem;
         width: 100%;
 
         /* ===================================
@@ -163,7 +165,7 @@
         ==================================== */
         &.invalid {
             .form__group-input {
-                border-color: #dd3444;
+                border-color: $red;
 
                 &:focus,
                 &:active {
@@ -172,7 +174,7 @@
             }
 
             .form__group-feedback {
-                color: #DD3444;
+                color: $red;
             }
         }
     }
@@ -185,25 +187,25 @@
  ==================================== */
 
 .valid-feedback {
-    color: #57CC9D;
+    color: $green;
 }
 
 .input.valid-feedback {
-    border-color: #57CC9D;
+    border-color: $green;
 }
 
 
 .input.valid-feedback:focus,
 .input.valid-feedback:active {
-    box-shadow: 0 0 0 3px rgba(#57CC9D, 0.25);
+    box-shadow: 0 0 0 3px rgba($green, 0.25);
 }
 
 .invalid-feedback {
-    color: #DD3444;
+    color: $red;
 }
 
 .input.invalid-feedback {
-    border-color: #dd3444;
+    border-color: $red;
 }
 
 .input.invalid-feedback:focus,
