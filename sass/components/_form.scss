@@ -1,6 +1,10 @@
 $red: #dd3444;
 $green: #57CC9D;
 
+// Focus 
+$boxShadowWidth: 3px;
+$boxShadowOpacity: 85%;
+
 .form {
 
     &__group {
@@ -23,7 +27,7 @@ $green: #57CC9D;
             background-color: white;
 
             &:focus {
-                box-shadow: 0 0 0 3px mix(white, $primary, 75%);
+                box-shadow: 0 0 0 $boxShadowWidth mix(white, $primary, $boxShadowOpacity);
                 outline: none;
                 border: 1px solid mix(white, $primary, 25%);
             }
@@ -169,7 +173,7 @@ $green: #57CC9D;
 
                 &:focus,
                 &:active {
-                    box-shadow: 0 0 0 3px rgba(221, 52, 68, 0.25);
+                    box-shadow: 0 0 0 $boxShadowWidth mix(white, $red, $boxShadowOpacity);
                 }
             }
 
@@ -197,7 +201,7 @@ $green: #57CC9D;
 
 .input.valid-feedback:focus,
 .input.valid-feedback:active {
-    box-shadow: 0 0 0 3px rgba($green, 0.25);
+    box-shadow: 0 0 0 $boxShadowWidth mix(white, $green, $boxShadowOpacity);
 }
 
 .invalid-feedback {
@@ -210,7 +214,7 @@ $green: #57CC9D;
 
 .input.invalid-feedback:focus,
 .input.invalid-feedback:active {
-    box-shadow: 0 0 0 3px rgba(221, 52, 68, 0.25);
+    box-shadow: 0 0 0 $boxShadowWidth mix(white, $red, $boxShadowOpacity);
 }
 
 /* ===================================
