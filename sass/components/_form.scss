@@ -1,220 +1,226 @@
+$highlight: $primary;
+$textColor: #34373b;
+$disabled: #B9C1C6;
 $red: #dd3444;
 $green: #57CC9D;
 
-// Focus 
+$borderRadius: 7px;
+$borderColor: #d9d9d9;
+$borderWidth: 1px;
+
+$inputFontSize: 15px;
+$labelFontSize: 15px;
+$feedbackFontSize: 14px;
+
 $boxShadowWidth: 3px;
 $boxShadowOpacity: 85%;
 
-.form {
 
-    &__group {
-        width: 100%;
+.form__group {
+    width: 100%;
+}
 
-        /* ===================================
-           Inputs and Select
-        ==================================== */
-        &-input {
-            display: block;
-            width: 100%;
-            margin-left: 0;
-            margin-right: 0;
-            color: #495058;
-            line-height: inherit;
-            padding: 7px 14px;
-            border-radius: 4px;
-            font-size: 1.5rem;
-            border: 1px solid gainsboro;
-            background-color: white;
+/* ===================================
+   Input & Select
+==================================== */
+.form__group-input {
+    padding: 7px 14px;
+    border: solid $borderWidth $borderColor;
+    color: $textColor;
+    border-radius: $borderRadius;
+    font-size: $inputFontSize;
+    background-color: white;
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    line-height: inherit;
 
-            &:focus {
-                box-shadow: 0 0 0 $boxShadowWidth mix(white, $primary, $boxShadowOpacity);
-                outline: none;
-                border: 1px solid mix(white, $primary, 25%);
-            }
+}
+
+.form__group-input:focus {
+    box-shadow: 0 0 0 $boxShadowWidth mix(white, $highlight, $boxShadowOpacity);
+    outline: none;
+    border: solid $borderWidth mix(white, $highlight, 25%);
+}
+
+.form__group select {
+    padding: 8px 14px; // Adjust select to have the same height as inputs
+}
+
+/* ===================================
+   Label
+==================================== */
+
+.form__group-label {
+    display: block;
+    font-size: $inputFontSize;
+    color: $textColor;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.form__group-label:empty {
+    display: none;
+}
+
+/* ===================================
+   Validation
+==================================== */
+.form__group-feedback {
+    font-size: $feedbackFontSize;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.form__group.invalid {
+    .form__group-input {
+        border-color: $red;
+    }
+
+    .form__group-input:focus,
+    .form__group-input:active {
+        box-shadow: 0 0 0 $boxShadowWidth mix(white, $red, $boxShadowOpacity);
+    }
+
+    .form__group-feedback {
+        color: $red;
+    }
+}
+
+.form__group.valid {
+    .form__group-input {
+        border-color: $green;
+    }
+
+    .form__group-input:focus,
+    .form__group-input:active {
+        box-shadow: 0 0 0 $boxShadowWidth mix(white, $green, $boxShadowOpacity);
+    }
+
+    .form__group-feedback {
+        color: $green;
+    }
+}
+
+
+/* ===================================
+    Radio Button
+==================================== */
+
+.form__group-radio {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.form__group-radio-circle {
+    width: 1em;
+    height: 1em;
+    border: solid $borderWidth $borderColor;
+    border-radius: 50%;
+    margin-right: 10px;
+    padding: 3px;
+}
+
+.form__group-radio-circle::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: mix(black, $highlight, 10%);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.15s;
+}
+
+.form__group-radio-input {
+    display: none;
+
+    &:checked {
+        &+.form__group-radio-circle::after {
+            transform: scale(1);
+        }
+    }
+
+    &:disabled {
+        &+.form__group-radio-circle {
+            border-color: $disabled;
+            padding: 0;
+            cursor: auto;
         }
 
-        select {
-            padding: 8px 14px; // Adjust select to have the same height as inputs
+        &+.form__group-radio-circle::after {
+            transform: scale(1);
+            background: mix(white, $disabled, 85%);
         }
 
-        &-label {
-            display: block;
-            font-size: 1.6rem;
-            color: #212529;
-            margin-bottom: 1rem;
-        }
-
-        &-feedback {
-            &.invalid {
-                color: $grey-900;
-            }
-        }
-
-        /* ===================================
-           Radio Buttons
-        ==================================== */
-
-        &-radio {
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-            margin-right: 30px;
-            color: #95A5A6;
-            margin-top: 1rem;
-
-            &-label {
-                color: #212529;
-            }
-
-            &-circle {
-                width: 1.25em;
-                height: 1.25em;
-                border: 1px solid #B9C1C6;
-                border-radius: 50%;
-                margin-right: 10px;
-                padding: 3px;
-
-                &::after {
-                    content: '';
-                    width: 100%;
-                    height: 100%;
-                    display: block;
-                    background: mix(black, $primary, 10%);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    transition: transform 0.15s;
-                }
-            }
-
-            &-input {
-                display: none;
-
-                &:checked+.form__group-radio-circle::after {
-                    transform: scale(1);
-                }
-
-                &:disabled+.form__group-radio-circle {
-                    border-color: #B9C1C6;
-                    padding: 0;
-
-                    &::after {
-                        transform: scale(1);
-                        background: #ECF0F1;
-                    }
-                }
-
-                &:disabled~.form__group-radio-label {
-                    color: #95A5A6;
-                }
-            }
-        }
-
-        /* ===================================
-           Checkboxes
-        ==================================== */
-        &-checkbox {
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-            margin-top: 10px;
-            margin-right: 30px;
-
-            &-input {
-                display: none;
-
-                &:checked+.form__group-checkbox-box {
-                    background: mix(black, $primary, 10%);
-                    border-color: mix(black, $primary, 10%);
-                }
-
-                &:checked+.form__group-checkbox-box::after {
-                    transform: scale(1);
-                }
-
-                &:disabled~.form__group-checkbox-label {
-                    color: #95A5A6;
-                }
-
-                &:disabled+.form__group-checkbox-box {
-                    background: #ECF0F1;
-                }
-            }
-
-            &-box {
-                width: 1.25em;
-                height: 1.25em;
-                border: 1px solid #B9C1C6;
-                border-radius: 3px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-right: 10px;
-                flex-shrink: 0;
-                transition: background 0.15s, border-color 0.15s;
-
-                &::after {
-                    content: '\2714';
-                    font-size: 0.8em;
-                    color: #fff;
-                    transform: scale(0);
-                    transition: transform 0.15s;
-                }
-            }
-
-        }
-
-
-        /* ===================================
-           Validation
-        ==================================== */
-        &.invalid {
-            .form__group-input {
-                border-color: $red;
-
-                &:focus,
-                &:active {
-                    box-shadow: 0 0 0 $boxShadowWidth mix(white, $red, $boxShadowOpacity);
-                }
-            }
-
-            .form__group-feedback {
-                color: $red;
-            }
+        &~.form__group-radio-label {
+            color: $disabled;
+            cursor: auto;
         }
     }
 }
 
 
-
 /* ===================================
-       Validation
- ==================================== */
+    Checkbox
+==================================== */
 
-.valid-feedback {
-    color: $green;
+.form__group-checkbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 30px;
 }
 
-.input.valid-feedback {
-    border-color: $green;
+.form__group-checkbox-box {
+    width: 1em;
+    height: 1em;
+    border: 1px solid #B9C1C6;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
 }
 
-
-.input.valid-feedback:focus,
-.input.valid-feedback:active {
-    box-shadow: 0 0 0 $boxShadowWidth mix(white, $green, $boxShadowOpacity);
+.form__group-checkbox-box::after {
+    content: '\2714';
+    font-size: 0.65em;
+    color: #fff;
+    transform: scale(0);
+    transition: transform 0.15s;
 }
 
-.invalid-feedback {
-    color: $red;
-}
+.form__group-checkbox-input {
+    display: none;
 
-.input.invalid-feedback {
-    border-color: $red;
-}
+    &:checked {
+        &+.form__group-checkbox-box {
+            background: mix(black, $highlight, 10%);
+            border-color: mix(black, $highlight, 10%);
+        }
 
-.input.invalid-feedback:focus,
-.input.invalid-feedback:active {
-    box-shadow: 0 0 0 $boxShadowWidth mix(white, $red, $boxShadowOpacity);
+        &+.form__group-checkbox-box::after {
+            transform: scale(1);
+        }
+    }
+    
+    &:disabled {
+        &~.form__group-checkbox-label {
+            color: $disabled;
+        }
+
+        &+.form__group-checkbox-box {
+            background: mix(white, $disabled, 85%);
+        }
+    }
 }
 
 /* ===================================
@@ -232,66 +238,13 @@ label.default-label {
 
 .input:disabled,
 .select:disabled {
-    background: #ECF0F1;
+    background: mix(white, $disabled, 85%);
 }
 
 .input:disabled::placeholder {
-    color: #95A5A6;
+    color: $disabled;
 }
 
-
-/* ===================================
-   Checkbox
-==================================== */
-
-// .checkbox {
-//     display: inline-flex;
-//     align-items: center;
-//     cursor: pointer;
-//     margin-right: 30px;
-// }
-
-// .checkbox-input {
-//     display: none;
-// }
-
-// .checkbox-box {
-//     width: 1.25em;
-//     height: 1.25em;
-//     border: 1px solid #B9C1C6;
-//     border-radius: 3px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     margin-right: 10px;
-//     flex-shrink: 0;
-//     transition: background 0.15s, border-color 0.15s;
-// }
-
-// .checkbox-box::after {
-//     content: '\2714';
-//     font-size: 0.8em;
-//     color: #fff;
-//     transform: scale(0);
-//     transition: transform 0.15s;
-// }
-
-// .checkbox-input:checked+.checkbox-box {
-//     background: mix(black, $primary, 10%);
-//     border-color: mix(black, $primary, 10%);
-// }
-
-// .checkbox-input:checked+.checkbox-box::after {
-//     transform: scale(1);
-// }
-
-// .checkbox-input:disabled~.checkbox-label {
-//     color: #95A5A6;
-// }
-
-// .checkbox-input:disabled+.checkbox-box {
-//     background: #ECF0F1;
-// }
 
 /* ===================================
    Toggle
@@ -322,7 +275,7 @@ label.default-label {
 }
 
 .toggle-input:checked~.toggle-fill {
-    background: mix(black, $primary, 10%);
+    background: mix(black, $highlight, 10%);
 }
 
 .toggle-fill::after {
@@ -367,20 +320,20 @@ label.default-label {
 
 .radio-group-label {
     padding: 8px 14px;
-    font-size: 1.4rem;
+    font-size: $inputFontSize;
     font-family: inherit;
     color: #fff !important;
-    background: $primary;
+    background: $highlight;
     cursor: pointer;
     transition: background .1s;
 }
 
 .radio-group-label:not(:last-of-type) {
-    border-right: 1px solid $primary;
+    border-right: 1px solid $highlight;
 }
 
 .radio-group-input:checked+.radio-group-label {
-    background: mix(black, $primary, 10%);
+    background: mix(black, $highlight, 10%);
 }
 
 
