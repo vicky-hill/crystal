@@ -15,6 +15,9 @@ $feedbackFontSize: 14px;
 $boxShadowWidth: 3px;
 $boxShadowOpacity: 85%;
 
+.form > * + * {
+    margin-top: 2rem;
+}
 
 .form__group {
     width: 100%;
@@ -65,12 +68,16 @@ $boxShadowOpacity: 85%;
 }
 
 /* ===================================
-   Validation
+   Feedback & Validation
 ==================================== */
 .form__group-feedback {
     font-size: $feedbackFontSize;
     margin-top: 5px;
     margin-left: 5px;
+}
+
+.form__group-feedback:empty {
+    display: none;
 }
 
 .form__group.invalid {
@@ -107,6 +114,10 @@ $boxShadowOpacity: 85%;
 /* ===================================
     Radio Button
 ==================================== */
+
+.form__group-radios {
+    margin-left: 5px;
+}
 
 .form__group-radio {
     display: inline-flex;
@@ -168,6 +179,9 @@ $boxShadowOpacity: 85%;
 /* ===================================
     Checkbox
 ==================================== */
+.form__group-checkboxes {
+    margin-left: 5px;
+}
 
 .form__group-checkbox {
     display: inline-flex;

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Radio = ({ children, onChange, name, selectedValue, value, setValue, values, stacked, checked, disabled, className='', identifier, ...rest }) => {
+const Radio = ({ children, onChange, name, selectedValue, value, setValue, values, stacked, checked, disabled, className='', groupClassName='', identifier, ...rest }) => {
 
     value = value ? value : children;
     checked = checked ? checked : (typeof(values) === 'object' && values !== null) ? values[name] === value : values ? values === value : selectedValue ? selectedValue === value : false;
