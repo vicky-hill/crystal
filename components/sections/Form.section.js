@@ -33,19 +33,7 @@ const FormSection = ({ }) => {
 
     return (
         <section id="form" className='w-full lg:w-1/2'>
-            <div className='mb-20'>
-                <Form>
-                    <Input placeholder="First" />
-                    <Input placeholder="Second" />
-                </Form>
-
-               
-                <Input placeholder="Third" />
-
-
-            </div>
-
-
+          
             <Form
                 validation={validationSchema}
                 values={values}
