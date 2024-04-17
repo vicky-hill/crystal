@@ -1,4 +1,29 @@
-[data-tooltip] {
+.menu {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    width: 200px;
+
+
+    &__item {
+        display: flex;
+        padding: 10px 15px;
+    }
+
+    &__hotkey {
+        margin-left: auto;
+    }
+
+    &__divider {
+        border-bottom: 1px solid #d1d5db;
+        height: 1px;
+    }
+}
+
+
+
+    [data-tooltip] {
     position: relative;
     cursor: default;
 }
@@ -27,12 +52,6 @@
     transition: opacity .3s ease;
 }
 
-[data-tooltip]:hover::before,
-[data-tooltip]:hover::after {
-    opacity: 0.98;
-    visibility: visible;
-}
-
 [data-tooltip]::after {
     position: absolute;
     visibility: hidden;
@@ -48,13 +67,18 @@
     transition: opacity .3s ease;
 }
 
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+    opacity: 0.98;
+    visibility: visible;
+}
 
 [data-tooltip-bottom]::before {
     top: calc(100% + 10px);
     bottom: auto;
 } 
 
-[data-bottom]::after {
+[data-tooltip-bottom]::after {
     top: 100%;
     transform: rotate(180deg) translateX(50%);
 }

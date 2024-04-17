@@ -1,6 +1,16 @@
 import React from 'react'
 
-const Input = ({ number, dollar, name, label, onChange, value, error, placeholder, noLabel, className = '', groupClassName = '', identifier, style, ...rest }) => {
+/**
+ * @typedef { 'regular' | 'floatingLabel' } Variant
+ */
+
+/**
+ * Input
+ * @param {object} props
+ * @param {Variant} props.variant
+ * @param {boolean} props.number
+ */
+const Input = ({ variant = 'floatingLabel', number, dollar, name, label, onChange, value, error, placeholder, noLabel, className = '', groupClassName = '', identifier, style, ...rest }) => {
 
     const preventMinus = (e) => {
         if (e.code === 'Minus') {
@@ -16,7 +26,7 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
         });
         return formatter.format(parseFloat(price));
     };
-    
+
     const handleBlur = (e) => {
         let price = e.target.value;
 
@@ -75,7 +85,11 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
         />
     )
 
-    return (
+    /* ===================================
+      Variants
+   =================================== */
+
+    const regularInput = (
         <div className={`${groupClassName} form__group ${error ? 'invalid' : ''}`} style={style ? style : {}}>
             {!noLabel && <label className='form__group-label' htmlFor={name}>{label}</label>}
             {
@@ -84,6 +98,23 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
             <div className="form__group-feedback">{error}</div>
         </div>
     )
+
+    const floatingLabelInput = (
+        <div className={`${groupClassName} form__group floating-label ${error ? 'invalid' : ''}`} style={style ? style : {}}>
+            {
+                number ? NumberInput : dollar ? DollarInput : TextInput
+            }
+            {!noLabel && <label className='form__group-label' htmlFor={name}>{label}</label>}
+            <div className="form__group-feedback">{error}</div>
+        </div>
+    )
+
+    const variants = {
+        regular: regularInput,
+        floatingLabel: floatingLabelInput
+    }
+
+    return variants[variant];
 }
 
 export default Input;
