@@ -2,10 +2,12 @@
     top: 0;
     width: 100%;
     display: flex;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
     padding: 13px 40px;
-    background-color: #f8f9fa;
+    background-color: white;
+    transition: box-shadow .4s;
     z-index: $z-navbar;
 }
 

@@ -26,14 +26,28 @@ import CarouselSection from '../sections/Carousel.section'
 import GallerySection from '../sections/Gallery.section'
 import DragnDrop from '../elements/DragnDrop'
 import Tooltip from '../elements/Tooltip'
+import Dropdown from '../elements/Dropdown'
+import Header from '@/templates/bedim/Header'
+// import Header from '../elements/Header'
 
 
 const Basic = ({ }) => {
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
+            {/* <Header /> */}
+            <Header />
             <div className="container mt-36">
+
+                <div className='flex gap-5'>
+                    <Dropdown title="Flyers" />
+                    <Dropdown title="Sticker" />
+                    <Dropdown title="Sale" />
+                    <Dropdown title="Ecommerce" />
+                </div>
+
+
                 <FormSection />
                 <Tooltip />
                 <DragnDrop />

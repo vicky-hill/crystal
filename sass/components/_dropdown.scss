@@ -1,12 +1,16 @@
 .dropdown {
     position: relative;
+    z-index: 100;
+    margin-bottom: 10rem;
 
-    &__menu {
+    &__link {
+        padding-bottom: .25rem;
+    }
+
+    &__menu,
+    &__children {
         position: absolute;
-        left: 8px;
-        top: calc(100% + .25rem);
         background-color: white;
-        padding: 10px;
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
         border-radius: .25rem;
         opacity: 0;
@@ -14,9 +18,32 @@
         transition: all 150ms ease-in-out;
         pointer-events: none;
         width: max-content;
+        padding-bottom: 10px;
     }
 
-    &:hover &__menu {
+    &__menu {
+        top: 100%;
+
+        &-item {
+            padding: 10px;
+            padding-bottom: 0;
+        }
+    }
+
+    &__has-children {
+        position: relative;
+    }
+
+    &__children {
+        position: absolute;
+        width: max-content;
+        top: 0;
+        left: calc(100% + 1px);
+    }
+
+    &:hover &__menu,
+    &__menu:hover 
+    &__has-children:hover .dropdown__children{
         pointer-events: auto;
         transform: translateY(0);
         opacity: 1;

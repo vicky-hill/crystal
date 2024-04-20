@@ -1,0 +1,78 @@
+:root {
+    --header-height: 3.5rem;
+}
+
+.bedim {
+    &__container {
+       
+    }
+
+    &__header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 200;
+        transition: box-shadow .4s;
+        margin: 0 auto;
+        background: white;
+    }
+}
+
+/*=============== Notes ===============*/
+
+.bedim__nav {
+    position: relative;
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 1.5rem;
+}
+
+.bedim__nav__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+}
+
+.bedim__nav__close {
+    position: absolute;
+    top: 1.15rem;
+    right: 1.5rem;
+}
+
+@media screen and (max-width: 1150px) {
+    .bedim__nav__menu {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 5rem;
+        transition: left .4s;
+        background: white;
+    }
+
+    .show-menu {
+        left: 0;
+    }
+}
+
+
+
+@media screen and (min-width: 1150px) {
+    .bedim__nav {
+        height: calc(3.5rem + 2rem);
+    }
+
+    .bedim__nav__toggle,
+    .bedim__nav__close {
+        display: none;
+    }
+
+    .bedim__nav__list {
+        flex-direction: row;
+        column-gap: 4rem;
+    }
+}
