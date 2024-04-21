@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from './Button';
 import Input from './form/Input';
 import Dropdown from './Dropdown';
@@ -22,9 +22,23 @@ const Navbar = ({ }) => {
         }
     }
 
+    useEffect(() => {
+        const shadowHeader = () => {
+            const header = document.getElementById('header')
+
+            window.scrollY >= 50 ? header.classList.add('header--shadow')
+                : header.classList.remove('header--shadow')
+        };
+
+        window.addEventListener('scroll', shadowHeader);
+
+        return () => {
+            window.removeEventListener('scroll', shadowHeader);
+        };
+    }, []);
 
     return (
-        <nav className="nav-container mb-5">
+        <nav className="nav-container mb-5" id='header'>
             <img src="" className="nav-logo" loading="lazy"></img>
             <a className="nav-brand" href="#">Crystal</a>
 
@@ -41,12 +55,6 @@ const Navbar = ({ }) => {
                             </li>
                         ))
                     }
-
-                    <Dropdown title="Flyers" />
-                    <Dropdown title="Sticker" />
-                    <Dropdown title="Sale" />
-                    <Dropdown title="Ecommerce" />
-
                 </ul>
 
                 <div className='flex justify-center items-center'>
